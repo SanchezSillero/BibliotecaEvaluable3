@@ -15,8 +15,8 @@ public abstract class Biblioteca implements Mostrable {
         this.director = director;
     }
 
-    public void construirCatalogo(){
-        this.catalogo = new Catalogo();
+    public void construirCatalogo(int capacidad){
+        this.catalogo = new Catalogo(capacidad);
     }
 
     @Override
@@ -30,6 +30,10 @@ public abstract class Biblioteca implements Mostrable {
         int capacidad;
         ArrayList<Libro> listaLibros;
 
+        public Catalogo(int capacidad) {
+            this.capacidad = capacidad;
+            listaLibros= new ArrayList<>(capacidad);
+        }
     }
 
     public String getNombre() {
