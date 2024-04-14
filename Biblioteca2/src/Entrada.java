@@ -17,10 +17,16 @@ public class Entrada {
         bibliotecaGeneral.mostrarDatos();
         bibliotecaGeneral.buscarPorIsbn();*/
         BibliotecaEspecializada bibliotecaEspecializada = new BibliotecaEspecializada("BibTerror","hflk", Tematica.terror);
-        bibliotecaEspecializada.construirCatalogo(2);
-        bibliotecaEspecializada.agregarLibro(new Terror(1, "ljbhd", "ñbn", 3531, 18));
+        bibliotecaEspecializada.construirCatalogo(1);
+        bibliotecaEspecializada.agregarLibro(new Terror());
+        bibliotecaEspecializada.agregarLibro(new Terror(3, "ljbhd", "ñbn", 3531, 18));
         //bibliotecaEspecializada.buscarPorIsbn();
-        bibliotecaEspecializada.agregarLibro(new Comedia());
+        bibliotecaEspecializada.construirCatalogo(2);
+        bibliotecaEspecializada.borrarCatalogo();
+        bibliotecaEspecializada.construirCatalogo(5);
+        bibliotecaGeneral.mostrarListaLibros();
+        bibliotecaGeneral.mostrarDatos();
+
 
     }
 }

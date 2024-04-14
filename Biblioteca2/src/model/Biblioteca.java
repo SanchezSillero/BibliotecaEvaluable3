@@ -18,17 +18,39 @@ public abstract class Biblioteca implements Mostrable{
         this.director = director;
     }
 
-    public void construirCatalogo(int capacidad) {
-        this.catalogo = new Catalogo(capacidad);
-        System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
+
+    public void mostrarListaLibros(){
+        for (Libro item : listaLibros) {
+            item.mostrarDatos();
+            System.out.println("------------------------------------");
+        }
     }
+
+    public void construirCatalogo(int capacidad) {
+        if (catalogo==null) {
+            this.catalogo = new Catalogo(capacidad);
+            System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
+        }else {
+            System.out.println("Ya existe un catálogo en la biblioteca");
+        }
+    }
+
+    public void borrarCatalogo(){
+        catalogo = null;
+        System.out.println("Catálogo eliminado correctamente");
+    }
+
+
 
     @Override
     public void mostrarDatos() {
+        System.out.println("nombre = " + nombre);
+        System.out.println("director = " + director);
+
         if (catalogo.listaLibrosCatalogo.isEmpty()) {
             System.out.println("No hay libros para mostrar");
         } else {
-            System.out.println("Lista de libros");
+            System.out.println("Lista de libros en el catálogo");
             for (Libro libro : catalogo.listaLibrosCatalogo) {
                 libro.mostrarDatos();
                 System.out.println("--------------------------------");
@@ -49,8 +71,10 @@ public abstract class Biblioteca implements Mostrable{
     public void agregarLibro(Libro libro) {
         if (!estaLibro(libro)) {
             listaLibros.add(libro);
+            catalogo.agregarLibro(libro);
+        }else {
+            System.out.println("Ya existe un libro con ese ISBN");
         }
-        catalogo.agregarLibro(libro);
     }
 
     public void sacarLibro() {
@@ -95,7 +119,7 @@ public abstract class Biblioteca implements Mostrable{
                 System.out.println("Libro agregado satisfactoriamente");
             } else {
                 if (capacidad <= listaLibrosCatalogo.size()) {
-                    System.out.println("No hay espacio para más libros");
+                    System.out.println("No hay espacio para más libros en el catálogo");
                 }
             }
         }
