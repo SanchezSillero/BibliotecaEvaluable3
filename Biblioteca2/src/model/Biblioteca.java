@@ -31,8 +31,12 @@ public abstract class Biblioteca implements Mostrable {
 
     public void construirCatalogo(int capacidad) {
         if (catalogo == null) {
-            this.catalogo = new Catalogo(capacidad);
-            System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
+            try {
+                this.catalogo = new Catalogo(capacidad);
+                System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
+            } catch (IllegalArgumentException e) {
+                System.out.println("La capacidad no puede ser un número negativo");
+            }
         } else {
             System.out.println("Ya existe un catálogo en la biblioteca");
         }
