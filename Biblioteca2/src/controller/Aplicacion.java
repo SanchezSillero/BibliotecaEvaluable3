@@ -2,18 +2,17 @@ package controller;
 
 import exceptions.LibroNoEncontradoException;
 import model.Biblioteca;
-import model.Libro;
 
 import java.util.Scanner;
 
-public class OperacionesMenu {
+public class Aplicacion {
     private Scanner scanner = new Scanner(System.in);
     private Biblioteca biblioteca;
 
-    public OperacionesMenu() {
+    public Aplicacion() {
     }
 
-    public OperacionesMenu(Biblioteca biblioteca) {
+    public Aplicacion(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
 
@@ -23,9 +22,9 @@ public class OperacionesMenu {
         scanner.nextLine();
 
         int opcion;
-        OperacionesMenu[] operacionesMenus = new OperacionesMenu[bibliotecas.length]; //creamos un array de gestores, uno para cada objeto Biblioteca
+        Aplicacion[] aplicacions = new Aplicacion[bibliotecas.length]; //creamos un array de gestores, uno para cada objeto Biblioteca
         for (int i = 0; i < bibliotecas.length; i++) {
-            operacionesMenus[i] = new OperacionesMenu(bibliotecas[i]);
+            aplicacions[i] = new Aplicacion(bibliotecas[i]);
         }
         do {
             System.out.println("¿Qué biblioteca desea gestionar?");
@@ -37,7 +36,7 @@ public class OperacionesMenu {
             opcion = scanner.nextInt();
             if (opcion >= 1 && opcion <= bibliotecas.length) {//validamos si la opcion esta dentro del rango de bibliotecas
                 System.out.println("\t-----" + bibliotecas[opcion - 1].getNombre() + "-----");
-                operacionesMenus[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub del gestor correspondiente a la biblioteca seleccionada
+                aplicacions[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub del gestor correspondiente a la biblioteca seleccionada
             } else if (opcion == bibliotecas.length + 1) { //verificamos si la opcion es la del apendice salir del menu
                 System.out.println("¡HASTA PRONTO!");
             } else {
