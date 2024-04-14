@@ -56,7 +56,7 @@ public class Aplicacion {
                 case 1: { // Buscar información sobre un libro aunque no este en el catalogo (lo busca en la libreria externa)
                     try {
                         biblioteca.buscarPorIsbn();
-                    }catch (LibroNoEncontradoException e){
+                    } catch (LibroNoEncontradoException e) {
                         System.out.println(e.getMessage());
                     }
                     pulseEnter();
@@ -100,6 +100,7 @@ public class Aplicacion {
 
         } while (opcionSub != 8);
     }
+
     public void pulseEnter() {
         System.out.println("\n\n\t\t\t    Pulse Enter para continuar");
         scanner.nextLine();

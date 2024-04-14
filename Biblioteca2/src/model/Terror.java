@@ -1,6 +1,6 @@
 package model;
 
-public class Terror extends Libro{
+public class Terror extends Libro {
     private int calificacionEdad;
 
     public Terror() {

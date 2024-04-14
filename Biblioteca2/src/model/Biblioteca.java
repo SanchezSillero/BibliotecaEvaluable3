@@ -33,7 +33,7 @@ public abstract class Biblioteca implements Mostrable {
         if (catalogo == null) {
             try {
                 System.out.println("Introduce la capacidad que tendrá el catálogo");
-                int capacidad=scanner.nextInt();
+                int capacidad = scanner.nextInt();
                 this.catalogo = new Catalogo(capacidad);
                 System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
             } catch (Exception e) {

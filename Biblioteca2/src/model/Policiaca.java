@@ -2,9 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-public class Policiaca extends Libro{
+public class Policiaca extends Libro {
     Trama trama;
-    ArrayList<String>listaPersonajes;
+    ArrayList<String> listaPersonajes;
 
     public Policiaca() {
     }

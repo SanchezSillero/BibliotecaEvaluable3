@@ -16,7 +16,7 @@ public class BibliotecaEspecializada extends Biblioteca {
                 (libro instanceof Policiaca && tematica == Tematica.policiaca))
             super.agregarLibro(libro);
         else {
-            System.out.println("Libro no agregado. Solo se aceptan libros de temática "+this.tematica);
+            System.out.println("Libro no agregado. Solo se aceptan libros de temática " + this.tematica);
         }
     }
 }
