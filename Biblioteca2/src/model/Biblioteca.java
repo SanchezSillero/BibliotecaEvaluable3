@@ -1,5 +1,8 @@
 package model;
 
+import exceptions.LibroNoEncontradoException;
+import exceptions.SinHuecoEnCatalogoException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,8 +42,7 @@ public abstract class Biblioteca implements Mostrable {
         if (catalogo != null) {
             catalogo = null;
             System.out.println("Catálogo eliminado correctamente");
-        }
-        else {
+        } else {
             System.out.println("No existe ningún catálogo que borrar");
         }
     }
@@ -82,6 +84,8 @@ public abstract class Biblioteca implements Mostrable {
                 catalogo.agregarLibro(libro);
             } catch (NullPointerException falloCatalogoNulo) {
                 System.out.println("No hay catálogo para añadir libros");
+            } catch (SinHuecoEnCatalogoException sinHuecoEnCatalogo) {
+                System.out.println(sinHuecoEnCatalogo.getMessage());
             }
         } else {
             System.out.println("Ya existe un libro con ese ISBN");
@@ -91,12 +95,12 @@ public abstract class Biblioteca implements Mostrable {
     public void sacarLibro() {
         try {
             catalogo.sacarLibro();
-        }catch (NullPointerException falloCatalogoNulo){
+        } catch (NullPointerException falloCatalogoNulo) {
             System.out.println("No existe ningún catálogo sobre el que sacar un libro");
         }
     }
 
-    public void buscarPorIsbn() {
+    public void buscarPorIsbn() throws LibroNoEncontradoException {
         System.out.println("Introduce el ISBN del libro que desea buscar");
         int isbnBuscar = scanner.nextInt();
         boolean encontrado = false;
@@ -107,7 +111,7 @@ public abstract class Biblioteca implements Mostrable {
             }
         }
         if (!encontrado) {
-            System.out.println("No existe un libro con el ISBN " + isbnBuscar + " en nuestra aplicación");
+            throw new LibroNoEncontradoException("No existe un libro con el ISBN " + isbnBuscar + " en nuestra aplicación");
         }
     }
 
@@ -133,13 +137,13 @@ public abstract class Biblioteca implements Mostrable {
             return false;
         }
 
-        public void agregarLibro(Libro libro) {
+        public void agregarLibro(Libro libro) throws SinHuecoEnCatalogoException {
             if (capacidad > listaLibrosCatalogo.size() && !estaLibroCatalogo(libro)) {
                 listaLibrosCatalogo.add(libro);
                 System.out.println("Libro agregado satisfactoriamente");
             } else {
                 if (capacidad <= listaLibrosCatalogo.size()) {
-                    System.out.println("No hay espacio para más libros en el catálogo");
+                    throw new SinHuecoEnCatalogoException("No hay espacio para más libros en el catálogo");
                 }
             }
         }
