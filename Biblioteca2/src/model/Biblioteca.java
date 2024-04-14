@@ -29,13 +29,15 @@ public abstract class Biblioteca implements Mostrable {
         }
     }
 
-    public void construirCatalogo(int capacidad) {
+    public void construirCatalogo() {
         if (catalogo == null) {
             try {
+                System.out.println("Introduce la capacidad que tendrá el catálogo");
+                int capacidad=scanner.nextInt();
                 this.catalogo = new Catalogo(capacidad);
                 System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
-            } catch (IllegalArgumentException e) {
-                System.out.println("La capacidad no puede ser un número negativo");
+            } catch (Exception e) {
+                System.out.println("El dato introducido no es correcto");
             }
         } else {
             System.out.println("Ya existe un catálogo en la biblioteca");
