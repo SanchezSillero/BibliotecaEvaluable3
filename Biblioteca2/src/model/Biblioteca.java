@@ -3,11 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Biblioteca implements Mostrable {
+public abstract class Biblioteca implements Mostrable{
     private String nombre;
     private String director;
     private Catalogo catalogo;
     private Scanner scanner = new Scanner(System.in);
+    private static ArrayList<Libro>  listaLibros = new ArrayList<>(); //lista de libros compartida por cualquier instancia de Biblioteca (static)
 
     public Biblioteca() {
     }
@@ -24,42 +25,76 @@ public abstract class Biblioteca implements Mostrable {
 
     @Override
     public void mostrarDatos() {
-        if (catalogo.listaLibros.isEmpty()) {
+        if (catalogo.listaLibrosCatalogo.isEmpty()) {
             System.out.println("No hay libros para mostrar");
         } else {
             System.out.println("Lista de libros");
-            for (Libro libro : catalogo.listaLibros) {
+            for (Libro libro : catalogo.listaLibrosCatalogo) {
                 libro.mostrarDatos();
                 System.out.println("--------------------------------");
             }
         }
     }
 
+    public boolean estaLibro(Libro libro) {
+        for (Libro item : listaLibros) {
+            if (item.getIsbn() == libro.getIsbn()) {
+                //System.out.println("Ya existe un libro con ese ISBN");
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void agregarLibro(Libro libro) {
+        if (!estaLibro(libro)) {
+            listaLibros.add(libro);
+        }
         catalogo.agregarLibro(libro);
     }
-    public void sacarLibro(){
+
+    public void sacarLibro() {
         catalogo.sacarLibro();
+    }
+
+    public void buscarPorIsbn (){
+        System.out.println("Introduce el ISBN del libro que desea buscar");
+        int isbnBuscar = scanner.nextInt();
+        for (Libro item : listaLibros) {
+            if (isbnBuscar== item.getIsbn()){
+                item.mostrarDatos();
+            }
+        }
     }
 
     class Catalogo {
         int capacidad;
-        ArrayList<Libro> listaLibros;
+        ArrayList<Libro> listaLibrosCatalogo;
 
         public Catalogo() {
         }
 
         public Catalogo(int capacidad) {
             this.capacidad = capacidad;
-            listaLibros = new ArrayList<>(capacidad);
+            listaLibrosCatalogo = new ArrayList<>(capacidad);
+        }
+
+        public boolean estaLibroCatalogo(Libro libro) {
+            for (Libro item : listaLibrosCatalogo) {
+                if (item.getIsbn() == libro.getIsbn()) {
+                    System.out.println("Ya existe un libro con ese ISBN en el catálogo");
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void agregarLibro(Libro libro) {
-            if (capacidad > listaLibros.size() && !estaLibro(libro)) {
-                listaLibros.add(libro);
+            if (capacidad > listaLibrosCatalogo.size() && !estaLibroCatalogo(libro)) {
+                listaLibrosCatalogo.add(libro);
                 System.out.println("Libro agregado satisfactoriamente");
-            }else {
-                if (capacidad <= listaLibros.size()){
+            } else {
+                if (capacidad <= listaLibrosCatalogo.size()) {
                     System.out.println("No hay espacio para más libros");
                 }
             }
@@ -69,27 +104,17 @@ public abstract class Biblioteca implements Mostrable {
             System.out.println("Introduce el ISBN del libro que desea sacar del catálogo");
             int isbn = scanner.nextInt();
             boolean encontrado = false;
-            for (Libro item : listaLibros) {
-                if (item.getIsbn() == isbn){
-                    listaLibros.remove(item);
+            for (Libro item : listaLibrosCatalogo) {
+                if (item.getIsbn() == isbn) {
+                    listaLibrosCatalogo.remove(item);
                     System.out.println("Libro sacado del catálogo satisfactoriamente");
                     encontrado = true;
                     break;
                 }
             }
-            if (!encontrado){
+            if (!encontrado) {
                 System.out.println("No se ha encontrado ningún libro con ese ISBN en el catálogo");
             }
-        }
-
-        public boolean estaLibro(Libro libro) {
-            for (Libro item : listaLibros) {
-                if (item.getIsbn() == libro.getIsbn()) {
-                    System.out.println("Ya existe un libro con ese ISBN en el catálogo");
-                    return true;
-                }
-            }
-            return false;
         }
 
         public int getCapacidad() {
@@ -100,12 +125,12 @@ public abstract class Biblioteca implements Mostrable {
             this.capacidad = capacidad;
         }
 
-        public ArrayList<Libro> getListaLibros() {
-            return listaLibros;
+        public ArrayList<Libro> getListaLibrosCatalogo() {
+            return listaLibrosCatalogo;
         }
 
-        public void setListaLibros(ArrayList<Libro> listaLibros) {
-            this.listaLibros = listaLibros;
+        public void setListaLibrosCatalogo(ArrayList<Libro> listaLibrosCatalogo) {
+            this.listaLibrosCatalogo = listaLibrosCatalogo;
         }
     }
 

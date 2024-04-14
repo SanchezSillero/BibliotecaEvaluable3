@@ -1,9 +1,13 @@
 package model;
+
+import java.util.Scanner;
+
 public abstract class Libro implements Mostrable{
     private int isbn;
     private String titulo;
     private String autor;
     private int numeroPaginas;
+    private Scanner scanner = new Scanner(System.in);
 
     public Libro() {
     }
@@ -21,6 +25,7 @@ public abstract class Libro implements Mostrable{
         System.out.println("autor = " + autor);
         System.out.println("numeroPaginas = " + numeroPaginas);
     }
+
 
     public int getIsbn() {
         return isbn;
