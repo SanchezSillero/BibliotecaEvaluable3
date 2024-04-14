@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Biblioteca implements Mostrable{
+public abstract class Biblioteca implements Mostrable {
     private String nombre;
     private String director;
     private Catalogo catalogo;
     private Scanner scanner = new Scanner(System.in);
-    private static ArrayList<Libro>  listaLibros = new ArrayList<>(); //lista de libros compartida por cualquier instancia de Biblioteca (static)
+    private static ArrayList<Libro> listaLibros = new ArrayList<>(); //lista de libros compartida por cualquier instancia de Biblioteca (static)
 
     public Biblioteca() {
     }
@@ -19,7 +19,7 @@ public abstract class Biblioteca implements Mostrable{
     }
 
 
-    public void mostrarListaLibros(){
+    public void mostrarListaLibros() {  //metodo para ver la lista de libros compartida por todas las instancias de biblioteca
         for (Libro item : listaLibros) {
             item.mostrarDatos();
             System.out.println("------------------------------------");
@@ -27,34 +27,41 @@ public abstract class Biblioteca implements Mostrable{
     }
 
     public void construirCatalogo(int capacidad) {
-        if (catalogo==null) {
+        if (catalogo == null) {
             this.catalogo = new Catalogo(capacidad);
             System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
-        }else {
+        } else {
             System.out.println("Ya existe un catálogo en la biblioteca");
         }
     }
 
-    public void borrarCatalogo(){
-        catalogo = null;
-        System.out.println("Catálogo eliminado correctamente");
+    public void borrarCatalogo() {
+        if (catalogo != null) {
+            catalogo = null;
+            System.out.println("Catálogo eliminado correctamente");
+        }
+        else {
+            System.out.println("No existe ningún catálogo que borrar");
+        }
     }
-
 
 
     @Override
     public void mostrarDatos() {
         System.out.println("nombre = " + nombre);
         System.out.println("director = " + director);
-
-        if (catalogo.listaLibrosCatalogo.isEmpty()) {
-            System.out.println("No hay libros para mostrar");
-        } else {
-            System.out.println("Lista de libros en el catálogo");
-            for (Libro libro : catalogo.listaLibrosCatalogo) {
-                libro.mostrarDatos();
-                System.out.println("--------------------------------");
+        try {
+            if (catalogo.listaLibrosCatalogo.isEmpty()) {
+                System.out.println("No hay libros para mostrar");
+            } else {
+                System.out.println("Lista de libros en el catálogo");
+                for (Libro libro : catalogo.listaLibrosCatalogo) {
+                    libro.mostrarDatos();
+                    System.out.println("--------------------------------");
+                }
             }
+        } catch (NullPointerException falloCatalogoNulo) {
+            System.out.println("No existe ningún catálogo sobre el que mostrar datos");
         }
     }
 
@@ -71,23 +78,36 @@ public abstract class Biblioteca implements Mostrable{
     public void agregarLibro(Libro libro) {
         if (!estaLibro(libro)) {
             listaLibros.add(libro);
-            catalogo.agregarLibro(libro);
-        }else {
+            try {
+                catalogo.agregarLibro(libro);
+            } catch (NullPointerException falloCatalogoNulo) {
+                System.out.println("No hay catálogo para añadir libros");
+            }
+        } else {
             System.out.println("Ya existe un libro con ese ISBN");
         }
     }
 
     public void sacarLibro() {
-        catalogo.sacarLibro();
+        try {
+            catalogo.sacarLibro();
+        }catch (NullPointerException falloCatalogoNulo){
+            System.out.println("No existe ningún catálogo sobre el que sacar un libro");
+        }
     }
 
-    public void buscarPorIsbn (){
+    public void buscarPorIsbn() {
         System.out.println("Introduce el ISBN del libro que desea buscar");
         int isbnBuscar = scanner.nextInt();
+        boolean encontrado = false;
         for (Libro item : listaLibros) {
-            if (isbnBuscar== item.getIsbn()){
+            if (isbnBuscar == item.getIsbn()) {
                 item.mostrarDatos();
+                encontrado = true;
             }
+        }
+        if (!encontrado) {
+            System.out.println("No existe un libro con el ISBN " + isbnBuscar + " en nuestra aplicación");
         }
     }
 
