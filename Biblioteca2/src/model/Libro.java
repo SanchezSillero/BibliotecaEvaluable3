@@ -2,7 +2,7 @@ package model;
 
 import java.util.Scanner;
 
-public abstract class Libro implements Mostrable {
+public abstract class Libro{
     protected int isbn;
     protected String titulo;
     protected String autor;

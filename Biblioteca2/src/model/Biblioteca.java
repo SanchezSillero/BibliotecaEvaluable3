@@ -5,7 +5,7 @@ import exceptions.SinHuecoEnCatalogoException;
 
 import java.util.*;
 
-public abstract class Biblioteca implements Mostrable {
+public abstract class Biblioteca {
     private String nombre;
     private String director;
     private Catalogo catalogo;
@@ -21,7 +21,6 @@ public abstract class Biblioteca implements Mostrable {
     }
 
 
-    @Override
     public void mostrarDatos() {
         System.out.println("\nnombre = " + nombre);
         System.out.println("director = " + director);
@@ -91,7 +90,8 @@ public abstract class Biblioteca implements Mostrable {
             System.out.println("Ya hay un libro con ese ISBN EN LA LISTA ESTATICA, este no se agregará");
         }
     }
-    public  Libro generarLibro() throws IllegalArgumentException{
+
+    public Libro generarLibro() throws IllegalArgumentException {
         System.out.println("¿Qué tipo de libro va a agregar?\n\t1. Terror\n\t2. Ensayo\n\t3. Comedia\n\t4. Policiaca");
         int tipoLibro = scanner.nextInt();
         switch (tipoLibro) {
@@ -124,41 +124,6 @@ public abstract class Biblioteca implements Mostrable {
         Libro libro = generarLibro();
         agregarLibroListaCompartida(libro);
         catalogo.agregarLibro(libro);
-
-        /*System.out.println("¿Qué tipo de libro va a agregar?\n\t1. Terror\n\t2. Ensayo\n\t3. Comedia\n\t4. Policiaca");
-        int tipoLibro = scanner.nextInt();
-        switch (tipoLibro) {
-            case 1: {
-                Terror libroAgregar = new Terror();
-                libroAgregar.generarTerror();
-                agregarLibroListaCompartida(libroAgregar);
-                catalogo.agregarLibro(libroAgregar);
-                break;
-            }
-            case 2: {
-                Ensayo libroAgregar = new Ensayo();
-                libroAgregar.generarEnsayo();
-                agregarLibroListaCompartida(libroAgregar);
-                catalogo.agregarLibro(libroAgregar);
-                break;
-            }
-            case 3: {
-                Comedia libroAgregar = new Comedia();
-                libroAgregar.generarComedia();
-                agregarLibroListaCompartida(libroAgregar);
-                catalogo.agregarLibro(libroAgregar);
-                break;
-            }
-            case 4: {
-                Policiaca libroAgregar = new Policiaca();
-                libroAgregar.generarPoliciaca();
-                agregarLibroListaCompartida(libroAgregar);
-                catalogo.agregarLibro(libroAgregar);
-                break;
-            }
-            default:
-                System.out.println("Opción no válida");
-        }*/
     }
 
 
