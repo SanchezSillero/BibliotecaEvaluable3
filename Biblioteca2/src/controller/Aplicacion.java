@@ -5,26 +5,26 @@ import model.*;
 
 import java.util.Scanner;
 
-public class Aplicacion {
+public class Aplicacion<T extends Libro> {
     private Scanner scanner = new Scanner(System.in);
-    private Biblioteca biblioteca;
+    private Biblioteca<T> biblioteca;
 
     public Aplicacion() {
     }
 
-    public Aplicacion(Biblioteca biblioteca) {
+    public Aplicacion(Biblioteca<T> biblioteca) {
         this.biblioteca = biblioteca;
     }
 
-    public void menu(Biblioteca... bibliotecas) { //los ... indica que el parametro es un array variable
+    public void menu(Biblioteca<T>... bibliotecas) { //los ... indica que el parametro es un array variable
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
-        System.out.println("\n\n\t\t    Pulse Enter para continuar");
-        scanner.nextLine();
+        pulseEnter();
+       // scanner.nextLine();
 
         int opcion;
-        Aplicacion[] aplicacions = new Aplicacion[bibliotecas.length]; //creamos un array de gestores, uno para cada objeto Biblioteca
+        Aplicacion[] aplicaciones = new Aplicacion[bibliotecas.length]; //creamos un array de aplicaciones, uno para cada objeto Biblioteca
         for (int i = 0; i < bibliotecas.length; i++) {
-            aplicacions[i] = new Aplicacion(bibliotecas[i]);
+            aplicaciones[i] = new Aplicacion(bibliotecas[i]);
         }
         do {
             System.out.println("¿Qué biblioteca desea gestionar?");
@@ -36,7 +36,7 @@ public class Aplicacion {
             opcion = scanner.nextInt();
             if (opcion >= 1 && opcion <= bibliotecas.length) {//validamos si la opcion esta dentro del rango de bibliotecas
                 System.out.println("\t-----" + bibliotecas[opcion - 1].getNombre() + "-----");
-                aplicacions[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub del gestor correspondiente a la biblioteca seleccionada
+                aplicaciones[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub dela aplicacion correspondiente a la biblioteca seleccionada
             } else if (opcion == bibliotecas.length + 1) { //verificamos si la opcion es la del apendice salir del menu
                 System.out.println("¡HASTA PRONTO!");
             } else {
@@ -45,7 +45,7 @@ public class Aplicacion {
         } while (opcion != bibliotecas.length + 1);
     }
 
-    public void menuSub(Biblioteca biblioteca) {
+    public void menuSub(Biblioteca<T> biblioteca) {
         int opcionSub;
         do {
             System.out.println("\t1. Buscar información sobre un libro\n\t2. Construir un catálogo\n\t3. Consultar " +
@@ -53,7 +53,7 @@ public class Aplicacion {
 
             opcionSub = scanner.nextInt();
             switch (opcionSub) {
-                case 1: { // Buscar información sobre un libro aunque no este en el catalogo (lo busca en la libreria externa)
+                case 1: { // Buscar información sobre un libro aunque no este en el catalogo (lo busca en la lista statica que comparten todas las bibliotecas)
                     try {
                         biblioteca.buscarPorIsbn();
                     } catch (LibroNoEncontradoException e) {
@@ -72,36 +72,57 @@ public class Aplicacion {
                     pulseEnter();
                     break;
                 }
-                case 4: {
-                    System.out.println("Seleccione el tipo de libro:\n\t1. Terror\n\t2. Comedia\n\t3. Ensayo\n\t4. Policiaca");
-                    int opcionTipoLibro = scanner.nextInt();
+                case 4: {//agregar libros al catalogo
+                    /*System.out.println("Introduce el ISBN del libro que deseas agregar:");
+                    int isbn = scanner.nextInt();
                     scanner.nextLine(); // Consumir el salto de línea
-                    Libro nuevoLibro;
-                    switch (opcionTipoLibro) {
-                        case 1:
-                            nuevoLibro = new Terror();
+
+                    // Buscar el libro en la lista compartida
+                    Libro libroExistente = null;
+                    for (Libro libro : Biblioteca.getListaLibros()) {
+                        if (libro.getIsbn() == isbn) {
+                            libroExistente = (T)libro;
                             break;
-                        case 2:
-                            nuevoLibro = new Comedia();
-                            break;
-                        case 3:
-                            nuevoLibro = new Ensayo();
-                            break;
-                        case 4:
-                            nuevoLibro = new Policiaca();
-                            break;
-                        default:
-                            System.out.println("Opción no válida");
-                            pulseEnter();
-                            return; // Salir del case 4
+                        }
                     }
-                    nuevoLibro.pedirDatosLibro(); // Solicitar al usuario los datos del nuevo libro
-                    biblioteca.agregarLibro(nuevoLibro);// Agregar el nuevo libro al catálogo de la biblioteca
+                    // Si el libro existe, agrégalo al catálogo de la biblioteca
+                    if (libroExistente != null) {
+                        biblioteca.agregarLibro((T) libroExistente);
+
+                    } else {
+                        System.out.println("No se encontró ningún libro con el ISBN proporcionado. Proceda a registrarlo");
+
+                        System.out.println("Seleccione el tipo de libro:\n\t1. Terror\n\t2. Comedia\n\t3. Ensayo\n\t4. Policiaca");
+                        int opcionTipoLibro = scanner.nextInt();
+                        scanner.nextLine(); // Consumir el salto de línea
+                        T nuevoLibro;
+                        switch (opcionTipoLibro) {
+                            case 1:
+                                nuevoLibro = new Terror();
+                                break;
+                            case 2:
+                                nuevoLibro = new Comedia();
+                                break;
+                            case 3:
+                                nuevoLibro = new Ensayo();
+                                break;
+                            case 4:
+                                nuevoLibro = new Policiaca();
+                                break;
+                            default:
+                                System.out.println("Opción no válida");
+                                pulseEnter();
+                                return; // Salir del case 4
+                        }
+                        nuevoLibro.pedirDatosLibro(); // Solicitar al usuario los datos del nuevo libro
+                        biblioteca.agregarLibro((T) nuevoLibro);// Agregar el nuevo libro al catálogo de la biblioteca
+                    }*/
                     pulseEnter();
                     break;
                 }
                 case 5: {
                     biblioteca.sacarLibro();
+                    pulseEnter();
                     break;
                 }
                 case 6: {
@@ -111,6 +132,7 @@ public class Aplicacion {
                 }
                 case 7: {
 
+                    pulseEnter();
                     break;
                 }
                 case 8: {
@@ -126,7 +148,7 @@ public class Aplicacion {
     }
 
     public void pulseEnter() {
-        System.out.println("\n\n\t\t\t    Pulse Enter para continuar");
+        System.out.println("\n\t\t\t    Pulse Enter para continuar");
         scanner.nextLine();
     }
 }

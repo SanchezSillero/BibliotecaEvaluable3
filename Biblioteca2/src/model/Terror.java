@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Terror extends Libro {
     private int calificacionEdad;
-    private Scanner scanner=new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
 
     public Terror() {
@@ -25,7 +25,7 @@ public class Terror extends Libro {
     public void pedirDatosLibro() {
         super.pedirDatosLibro();
         System.out.println("Introduce la clasificación por edad");
-        calificacionEdad= scanner.nextInt();
+        calificacionEdad = scanner.nextInt();
     }
 
     public int getCalificacionEdad() {
@@ -34,5 +34,13 @@ public class Terror extends Libro {
 
     public void setCalificacionEdad(int calificacionEdad) {
         this.calificacionEdad = calificacionEdad;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
     }
 }

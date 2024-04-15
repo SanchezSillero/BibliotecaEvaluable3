@@ -2,7 +2,7 @@ package model;
 
 import java.util.Scanner;
 
-public abstract class Libro implements Mostrable , LibroInterfaz{
+public abstract class Libro implements Mostrable, LibroInterfaz {
     private int isbn;
     private String titulo;
     private String autor;
@@ -26,7 +26,7 @@ public abstract class Libro implements Mostrable , LibroInterfaz{
         System.out.println("numeroPaginas = " + numeroPaginas);
     }
 
-    public void pedirDatosLibro(){
+    public void pedirDatosLibro() {
         System.out.println("Introduce los datos del libro");
         System.out.println("ISBN:");
         isbn = scanner.nextInt();
@@ -44,9 +44,6 @@ public abstract class Libro implements Mostrable , LibroInterfaz{
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
-        this.isbn = isbn;
-    }
 
     public String getTitulo() {
         return titulo;
