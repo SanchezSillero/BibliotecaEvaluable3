@@ -5,7 +5,7 @@ import exceptions.SinHuecoEnCatalogoException;
 
 import java.util.*;
 
-public class Biblioteca<T extends Libro> implements Mostrable {
+public abstract class Biblioteca implements Mostrable {
     private String nombre;
     private String director;
     private Catalogo catalogo;
@@ -91,9 +91,41 @@ public class Biblioteca<T extends Libro> implements Mostrable {
             System.out.println("Ya hay un libro con ese ISBN EN LA LISTA ESTATICA, este no se agregará");
         }
     }
+    public  Libro generarLibro() throws IllegalArgumentException{
+        System.out.println("¿Qué tipo de libro va a agregar?\n\t1. Terror\n\t2. Ensayo\n\t3. Comedia\n\t4. Policiaca");
+        int tipoLibro = scanner.nextInt();
+        switch (tipoLibro) {
+            case 1: {
+                Terror libroAgregar = new Terror();
+                libroAgregar.generarTerror();
+                return libroAgregar;
+            }
+            case 2: {
+                Ensayo libroAgregar = new Ensayo();
+                libroAgregar.generarEnsayo();
+                return libroAgregar;
+            }
+            case 3: {
+                Comedia libroAgregar = new Comedia();
+                libroAgregar.generarComedia();
+                return libroAgregar;
+            }
+            case 4: {
+                Policiaca libroAgregar = new Policiaca();
+                libroAgregar.generarPoliciaca();
+                return libroAgregar;
+            }
+            default:
+                throw new IllegalArgumentException("Opción no válida");
+        }
+    }
 
     public void agregarLibroAlCatalogo() throws SinHuecoEnCatalogoException {
-        System.out.println("¿Qué tipo de libro va a agregar?\n\t1. Terror\n\t2. Ensayo\n\t3. Comedia\n\t4. Policiaca");
+        Libro libro = generarLibro();
+        agregarLibroListaCompartida(libro);
+        catalogo.agregarLibro(libro);
+
+        /*System.out.println("¿Qué tipo de libro va a agregar?\n\t1. Terror\n\t2. Ensayo\n\t3. Comedia\n\t4. Policiaca");
         int tipoLibro = scanner.nextInt();
         switch (tipoLibro) {
             case 1: {
@@ -126,7 +158,7 @@ public class Biblioteca<T extends Libro> implements Mostrable {
             }
             default:
                 System.out.println("Opción no válida");
-        }
+        }*/
     }
 
 

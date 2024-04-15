@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class Entrada {
     public static void main(String[] args) {
         //1. CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS
-        Biblioteca<Libro> bibliotecaGenerica = new Biblioteca<>("Biblioteca Municipal", "Francisco Sánchez"); //Acepta cualquier tipo de libro
-        Biblioteca<Ensayo> bibliotecaEspEnsayos = new Biblioteca<>("Biblioteca Universidad Politécnica", "Patricia Sillero");//solo aceptara ENSAYOS
-        Biblioteca<Terror> bibliotecaEspTerror = new Biblioteca<>("Biblioteca Halloween", "María José Ruiz");//solo aceptara libros de TERROR
+        BibliotecaGeneral bibliotecaGenerica = new BibliotecaGeneral("Biblioteca Municipal", "Francisco Sánchez"); //Acepta cualquier tipo de libro
+        BibliotecaEspecializada bibliotecaEspEnsayos = new BibliotecaEspecializada("Biblioteca Universidad Politécnica", "Patricia Sillero", Tematica.ensayo);//solo aceptara ENSAYOS
+        Biblioteca bibliotecaEspTerror = new BibliotecaEspecializada("Biblioteca Halloween", "María José Ruiz", Tematica.terror);//solo aceptara libros de TERROR
 
         //creamos algunos libros (no están en ningun catalogo)
         Terror libroTerror1 = new Terror(1, "Frankenstein", "Mary Shelley", 168, 14);
@@ -23,7 +23,7 @@ public class Entrada {
         Ensayo ensayo2 = new Ensayo(5, "El arte de la guerra", "Sun Tzu", 112, "Estrategia");
 
         //añadimos estos libros a la lista (estatica) que comparten todas las bibliotecas(Fuera de sus respectivos catálogos)(se puede hacer desde cualquier instancia de biblioteca)
-        bibliotecaGenerica.agregarLibroListaCompartida(libroTerror1);
+        /*bibliotecaGenerica.agregarLibroListaCompartida(libroTerror1);
         bibliotecaEspTerror.agregarLibroListaCompartida(libroComedia1);//vemos que aqui no hay problemas por agregar un libro que no es de su tematica
         bibliotecaGenerica.agregarLibroListaCompartida(libroTerror1);//comprobamos que no nos deja añadir libros con el mismo ISBN
         bibliotecaGenerica.agregarLibroListaCompartida(libroPoliciaca1);
@@ -51,5 +51,7 @@ public class Entrada {
         //CREAMOS UNA INSTANCIA DE LA APLICACION
         Aplicacion aplicacion = new Aplicacion();
         aplicacion.menu(bibliotecaGenerica, bibliotecaEspEnsayos, bibliotecaEspTerror);//podemos meter tantas bibliotecas como tengamos instanciadas
+
+
     }
 }
