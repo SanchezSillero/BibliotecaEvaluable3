@@ -28,6 +28,12 @@ public class Comedia extends Libro {
         tipoDeHumor = TipoHumor.valueOf(tipoDeHumorStr.toLowerCase());
     }
 
+    public  Comedia generarComedia(){
+        pedirDatosLibro();
+        Comedia comedia = new Comedia(isbn,titulo,autor,numeroPaginas,tipoDeHumor);
+        return comedia;
+    }
+
     public TipoHumor getTipoDeHumor() {
         return tipoDeHumor;
     }

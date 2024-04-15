@@ -1,22 +1,23 @@
 package controller;
 
 import exceptions.LibroNoEncontradoException;
+import exceptions.SinHuecoEnCatalogoException;
 import model.*;
 
 import java.util.Scanner;
 
-public class Aplicacion<T extends Libro> {
+public class Aplicacion {
     private Scanner scanner = new Scanner(System.in);
-    private Biblioteca<T> biblioteca;
+    private Biblioteca biblioteca;
 
     public Aplicacion() {
     }
 
-    public Aplicacion(Biblioteca<T> biblioteca) {
+    public Aplicacion(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
 
-    public void menu(Biblioteca<T>... bibliotecas) { //los ... indica que el parametro es un array variable
+    public void menu(Biblioteca... bibliotecas) { //los ... indica que el parametro es un array variable
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
         pulseEnter();
        // scanner.nextLine();
@@ -45,8 +46,9 @@ public class Aplicacion<T extends Libro> {
         } while (opcion != bibliotecas.length + 1);
     }
 
-    public void menuSub(Biblioteca<T> biblioteca) {
+    public void menuSub(Biblioteca biblioteca) {
         int opcionSub;
+
         do {
             System.out.println("\t1. Buscar información sobre un libro\n\t2. Construir un catálogo\n\t3. Consultar " +
                     "catálogo\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Borrar catálogo\n\t7. Expotar el catálogo a un fichero\n\t8. Salir");
@@ -73,50 +75,13 @@ public class Aplicacion<T extends Libro> {
                     break;
                 }
                 case 4: {//agregar libros al catalogo
-                    /*System.out.println("Introduce el ISBN del libro que deseas agregar:");
-                    int isbn = scanner.nextInt();
-                    scanner.nextLine(); // Consumir el salto de línea
-
-                    // Buscar el libro en la lista compartida
-                    Libro libroExistente = null;
-                    for (Libro libro : Biblioteca.getListaLibros()) {
-                        if (libro.getIsbn() == isbn) {
-                            libroExistente = (T)libro;
-                            break;
-                        }
+                    try {
+                        biblioteca.agregarLibroAlCatalogo();
+                    } catch (NullPointerException falloCatalogoNulo) {
+                        System.out.println("No hay catálogo para añadir libros");
+                    } catch (SinHuecoEnCatalogoException e) {
+                        System.out.println(e.getMessage());
                     }
-                    // Si el libro existe, agrégalo al catálogo de la biblioteca
-                    if (libroExistente != null) {
-                        biblioteca.agregarLibro((T) libroExistente);
-
-                    } else {
-                        System.out.println("No se encontró ningún libro con el ISBN proporcionado. Proceda a registrarlo");
-
-                        System.out.println("Seleccione el tipo de libro:\n\t1. Terror\n\t2. Comedia\n\t3. Ensayo\n\t4. Policiaca");
-                        int opcionTipoLibro = scanner.nextInt();
-                        scanner.nextLine(); // Consumir el salto de línea
-                        T nuevoLibro;
-                        switch (opcionTipoLibro) {
-                            case 1:
-                                nuevoLibro = new Terror();
-                                break;
-                            case 2:
-                                nuevoLibro = new Comedia();
-                                break;
-                            case 3:
-                                nuevoLibro = new Ensayo();
-                                break;
-                            case 4:
-                                nuevoLibro = new Policiaca();
-                                break;
-                            default:
-                                System.out.println("Opción no válida");
-                                pulseEnter();
-                                return; // Salir del case 4
-                        }
-                        nuevoLibro.pedirDatosLibro(); // Solicitar al usuario los datos del nuevo libro
-                        biblioteca.agregarLibro((T) nuevoLibro);// Agregar el nuevo libro al catálogo de la biblioteca
-                    }*/
                     pulseEnter();
                     break;
                 }

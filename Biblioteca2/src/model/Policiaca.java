@@ -50,6 +50,13 @@ public class Policiaca extends Libro {
         return listaPersonajes;
     }
 
+    public Policiaca generarPoliciaca(){
+        pedirDatosLibro();
+        pedirPersonajes();
+        Policiaca policiaca = new Policiaca(isbn, titulo, autor, numeroPaginas, trama, listaPersonajes);
+        return policiaca;
+    }
+
     public Trama getTrama() {
         return trama;
     }

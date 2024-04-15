@@ -1,4 +1,5 @@
 import controller.Aplicacion;
+import exceptions.SinHuecoEnCatalogoException;
 import model.*;
 
 import java.util.ArrayList;
@@ -6,9 +7,9 @@ import java.util.ArrayList;
 public class Entrada {
     public static void main(String[] args) {
         //1. CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS
-        Biblioteca<Libro> bibliotecaGenerica = new Biblioteca<Libro>("Biblioteca Municipal", "Francisco Sánchez"); //Acepta cualquier tipo de libro
-        Biblioteca<Ensayo> bibliotecaEspEnsayos = new Biblioteca<Ensayo>("Biblioteca Universidad Politécnica", "Patricia Sillero");//solo aceptara ENSAYOS
-        Biblioteca<Terror> bibliotecaEspTerror = new Biblioteca<Terror>("Biblioteca Halloween", "María José Ruiz");//solo aceptara libros de TERROR
+        Biblioteca<Libro> bibliotecaGenerica = new Biblioteca<>("Biblioteca Municipal", "Francisco Sánchez"); //Acepta cualquier tipo de libro
+        Biblioteca<Ensayo> bibliotecaEspEnsayos = new Biblioteca<>("Biblioteca Universidad Politécnica", "Patricia Sillero");//solo aceptara ENSAYOS
+        Biblioteca<Terror> bibliotecaEspTerror = new Biblioteca<>("Biblioteca Halloween", "María José Ruiz");//solo aceptara libros de TERROR
 
         //creamos algunos libros (no están en ningun catalogo)
         Terror libroTerror1 = new Terror(1, "Frankenstein", "Mary Shelley", 168, 14);
@@ -31,25 +32,24 @@ public class Entrada {
         bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas*/
 
         //2. CREAMOS CATALOGO DE 4 LIBROS
-       /* bibliotecaEspEnsayos.construirCatalogo();//pedira la capacidad por consola
-        bibliotecaEspEnsayos.agregarLibro(ensayo1);
-        bibliotecaEspEnsayos.agregarLibro(ensayo2);
+
+
 
 
         //3. AGREGAMOS 5 LIBROS AL CATALOGO
-        bibliotecaGenerica.agregarLibro(libroComedia1);
+        /*bibliotecaGenerica.agregarLibro(libroComedia1);
         bibliotecaGenerica.agregarLibro(libroPoliciaca1);
         bibliotecaGenerica.agregarLibro(libroTerror1);
         bibliotecaGenerica.agregarLibro(ensayo1);
-        bibliotecaGenerica.agregarLibro(ensayo2);// vemos que no hay espacio para este libro
+        bibliotecaGenerica.agregarLibro(ensayo2);// vemos que no hay espacio para este libro*/
 
         //4. MOSTRAMOS INFORMACION DE LOS LIBROS
-        bibliotecaGenerica.mostrarDatos();
+        //bibliotecaGenerica.mostrarDatos();
 
         //5. EXPORTAMOS LOS LIBROS DEL CATALOGO A UN FICHERO
-*/
+
         //CREAMOS UNA INSTANCIA DE LA APLICACION
-        Aplicacion aplicacion = new Aplicacion<>();
+        Aplicacion aplicacion = new Aplicacion();
         aplicacion.menu(bibliotecaGenerica, bibliotecaEspEnsayos, bibliotecaEspTerror);//podemos meter tantas bibliotecas como tengamos instanciadas
     }
 }

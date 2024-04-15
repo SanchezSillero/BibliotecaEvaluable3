@@ -28,6 +28,12 @@ public class Terror extends Libro {
         calificacionEdad = scanner.nextInt();
     }
 
+    public Terror generarTerror(){
+        pedirDatosLibro();
+        Terror terror = new Terror(isbn, titulo, autor, numeroPaginas, calificacionEdad);
+        return terror;
+    }
+
     public int getCalificacionEdad() {
         return calificacionEdad;
     }

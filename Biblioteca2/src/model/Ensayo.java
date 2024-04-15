@@ -27,6 +27,12 @@ public class Ensayo extends Libro {
         tematica = scanner.nextLine();
     }
 
+    public  Ensayo generarEnsayo(){
+        pedirDatosLibro();
+        Ensayo ensayo = new Ensayo(isbn,titulo,autor,numeroPaginas, tematica);
+        return ensayo;
+    }
+
     public String getTematica() {
         return tematica;
     }

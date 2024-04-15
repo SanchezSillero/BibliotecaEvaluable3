@@ -2,12 +2,12 @@ package model;
 
 import java.util.Scanner;
 
-public abstract class Libro implements Mostrable, LibroInterfaz {
-    private int isbn;
-    private String titulo;
-    private String autor;
-    private int numeroPaginas;
-    private Scanner scanner = new Scanner(System.in);
+public abstract class Libro implements Mostrable {
+    protected int isbn;
+    protected String titulo;
+    protected String autor;
+    protected int numeroPaginas;
+    protected Scanner scanner = new Scanner(System.in);
 
     public Libro() {
     }
