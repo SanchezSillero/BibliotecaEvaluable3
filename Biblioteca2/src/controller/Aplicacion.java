@@ -1,7 +1,7 @@
 package controller;
 
 import exceptions.LibroNoEncontradoException;
-import model.Biblioteca;
+import model.*;
 
 import java.util.Scanner;
 
@@ -73,7 +73,31 @@ public class Aplicacion {
                     break;
                 }
                 case 4: {
-                    biblioteca.agregarLibro();
+                    System.out.println("Seleccione el tipo de libro:\n\t1. Terror\n\t2. Comedia\n\t3. Ensayo\n\t4. Policiaca");
+                    int opcionTipoLibro = scanner.nextInt();
+                    scanner.nextLine(); // Consumir el salto de línea
+                    Libro nuevoLibro;
+                    switch (opcionTipoLibro) {
+                        case 1:
+                            nuevoLibro = new Terror();
+                            break;
+                        case 2:
+                            nuevoLibro = new Comedia();
+                            break;
+                        case 3:
+                            nuevoLibro = new Ensayo();
+                            break;
+                        case 4:
+                            nuevoLibro = new Policiaca();
+                            break;
+                        default:
+                            System.out.println("Opción no válida");
+                            pulseEnter();
+                            return; // Salir del case 4
+                    }
+                    nuevoLibro.pedirDatosLibro(); // Solicitar al usuario los datos del nuevo libro
+                    biblioteca.agregarLibro(nuevoLibro);// Agregar el nuevo libro al catálogo de la biblioteca
+                    pulseEnter();
                     break;
                 }
                 case 5: {

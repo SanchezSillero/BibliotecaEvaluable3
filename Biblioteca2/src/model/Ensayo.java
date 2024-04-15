@@ -1,8 +1,10 @@
 package model;
 
+import java.util.Scanner;
+
 public class Ensayo extends Libro {
     private String tematica;
-
+    private Scanner scanner = new Scanner(System.in);
     public Ensayo() {
     }
 
@@ -15,6 +17,13 @@ public class Ensayo extends Libro {
     public void mostrarDatos() {
         super.mostrarDatos();
         System.out.println("tematica = " + tematica);
+    }
+
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Introduce la temática");
+        tematica= scanner.nextLine();
     }
 
     public String getTematica() {

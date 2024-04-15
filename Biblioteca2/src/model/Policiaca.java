@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Policiaca extends Libro {
     Trama trama;
@@ -14,6 +15,7 @@ public class Policiaca extends Libro {
         this.trama = trama;
         this.listaPersonajes = listaPersonajes;
     }
+    private Scanner scanner = new Scanner(System.in);
 
     @Override
     public void mostrarDatos() {
@@ -23,6 +25,27 @@ public class Policiaca extends Libro {
         for (String personaje : listaPersonajes) {
             System.out.println(personaje);
         }
+    }
+
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Introduce la trama (misterio/intriga)");
+        String tramaStr = scanner.nextLine();
+        trama = Trama.valueOf(tramaStr.toLowerCase());
+        listaPersonajes = pedirPersonajes();
+    }
+    public ArrayList<String> pedirPersonajes(){
+        ArrayList<String> listaPersonajes = new ArrayList<>();
+        System.out.println("Introduce los nombres de los personajes (presiona Enter después de cada nombre, escribe 'fin' para terminar):");
+        String nombrePersonaje;
+        do {
+            nombrePersonaje = scanner.nextLine();
+            if (!nombrePersonaje.equals("fin")) {
+                listaPersonajes.add(new String(nombrePersonaje));
+            }
+        } while (!nombrePersonaje.equals("fin"));
+        return listaPersonajes;
     }
 
     public Trama getTrama() {

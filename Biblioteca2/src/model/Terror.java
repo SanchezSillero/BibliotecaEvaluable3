@@ -1,7 +1,11 @@
 package model;
 
+import java.util.Scanner;
+
 public class Terror extends Libro {
     private int calificacionEdad;
+    private Scanner scanner=new Scanner(System.in);
+
 
     public Terror() {
     }
@@ -15,6 +19,13 @@ public class Terror extends Libro {
     public void mostrarDatos() {
         super.mostrarDatos();
         System.out.println("calificacionEdad = " + calificacionEdad);
+    }
+
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Introduce la clasificación por edad");
+        calificacionEdad= scanner.nextInt();
     }
 
     public int getCalificacionEdad() {

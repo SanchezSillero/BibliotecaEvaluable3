@@ -6,10 +6,10 @@ import exceptions.SinHuecoEnCatalogoException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Biblioteca implements Mostrable {
+public  class Biblioteca <T extends Libro>implements Mostrable {
     private String nombre;
     private String director;
-    private Catalogo catalogo;
+    private Catalogo<T> catalogo;
     private Scanner scanner = new Scanner(System.in);
     private static ArrayList<Libro> listaLibros = new ArrayList<>(); //lista de libros compartida por cualquier instancia de Biblioteca (static)
 
@@ -34,7 +34,7 @@ public abstract class Biblioteca implements Mostrable {
             try {
                 System.out.println("Introduce la capacidad que tendrá el catálogo");
                 int capacidad = scanner.nextInt();
-                this.catalogo = new Catalogo(capacidad);
+                this.catalogo = new Catalogo<>(capacidad);
                 System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
             } catch (Exception e) {
                 System.out.println("El dato introducido no es correcto");
@@ -83,7 +83,7 @@ public abstract class Biblioteca implements Mostrable {
         return false;
     }
 
-    public void agregarLibro(Libro libro) {
+    public void agregarLibro(T libro) {
         if (!estaLibro(libro)) {
             listaLibros.add(libro);
             try {
@@ -121,9 +121,9 @@ public abstract class Biblioteca implements Mostrable {
         }
     }
 
-    class Catalogo {
+    class Catalogo<T extends LibroInterfaz> {
         int capacidad;
-        ArrayList<Libro> listaLibrosCatalogo;
+        ArrayList<T> listaLibrosCatalogo;
 
         public Catalogo() {
         }
@@ -134,7 +134,7 @@ public abstract class Biblioteca implements Mostrable {
         }
 
         public boolean estaLibroCatalogo(Libro libro) {
-            for (Libro item : listaLibrosCatalogo) {
+            for (T item : listaLibrosCatalogo) {
                 if (item.getIsbn() == libro.getIsbn()) {
                     System.out.println("Ya existe un libro con ese ISBN en el catálogo");
                     return true;
@@ -145,7 +145,7 @@ public abstract class Biblioteca implements Mostrable {
 
         public void agregarLibro(Libro libro) throws SinHuecoEnCatalogoException {
             if (capacidad > listaLibrosCatalogo.size() && !estaLibroCatalogo(libro)) {
-                listaLibrosCatalogo.add(libro);
+                listaLibrosCatalogo.add((T) libro);
                 System.out.println("Libro agregado satisfactoriamente");
             } else {
                 if (capacidad <= listaLibrosCatalogo.size()) {
@@ -158,7 +158,7 @@ public abstract class Biblioteca implements Mostrable {
             System.out.println("Introduce el ISBN del libro que desea sacar del catálogo");
             int isbn = scanner.nextInt();
             boolean encontrado = false;
-            for (Libro item : listaLibrosCatalogo) {
+            for (T item : listaLibrosCatalogo) {
                 if (item.getIsbn() == isbn) {
                     listaLibrosCatalogo.remove(item);
                     System.out.println("Libro sacado del catálogo satisfactoriamente");
@@ -179,13 +179,13 @@ public abstract class Biblioteca implements Mostrable {
             this.capacidad = capacidad;
         }
 
-        public ArrayList<Libro> getListaLibrosCatalogo() {
+       /* public ArrayList<Libro> getListaLibrosCatalogo() {
             return listaLibrosCatalogo;
         }
 
         public void setListaLibrosCatalogo(ArrayList<Libro> listaLibrosCatalogo) {
             this.listaLibrosCatalogo = listaLibrosCatalogo;
-        }
+        }*/
     }
 
     public String getNombre() {

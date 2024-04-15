@@ -1,7 +1,10 @@
 package model;
 
+import java.util.Scanner;
+
 public class Comedia extends Libro {
     private String tipoDeHumor;
+    private Scanner scanner = new Scanner(System.in);
 
     public Comedia() {
     }
@@ -15,6 +18,13 @@ public class Comedia extends Libro {
     public void mostrarDatos() {
         super.mostrarDatos();
         System.out.println("tipoDeHumor = " + tipoDeHumor);
+    }
+
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Introduce el tipo de humor");
+        tipoDeHumor=scanner.nextLine();
     }
 
     public String getTipoDeHumor() {
