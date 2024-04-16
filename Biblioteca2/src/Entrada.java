@@ -7,11 +7,11 @@ public class Entrada {
     public static void main(String[] args) {
         //1. CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS Y DAMOS NOMBRE AL ARCHIVO DE SU CATALAGO
         BibliotecaGeneral bibliotecaGenerica = new BibliotecaGeneral("Biblioteca Municipal", "Francisco Sánchez"); //Acepta cualquier tipo de libro
-        bibliotecaGenerica.setNombreArchivoCatalogo("catalogo_bibliotecaGenerica.obj");
+        bibliotecaGenerica.setNombreArchivoCatalogo("bibliotecaGenerica.obj");
         BibliotecaEspecializada bibliotecaEspEnsayos = new BibliotecaEspecializada("Biblioteca Universidad Politécnica", "Patricia Sillero", Tematica.ensayo);//solo aceptara ENSAYOS
-        bibliotecaEspEnsayos.setNombreArchivoCatalogo("catalogo_bibliotecaEspEnsayos");
+        bibliotecaEspEnsayos.setNombreArchivoCatalogo("bibliotecaEspEnsayos");
         Biblioteca bibliotecaEspTerror = new BibliotecaEspecializada("Biblioteca Halloween", "María José Ruiz", Tematica.terror);//solo aceptara libros de TERROR
-        bibliotecaEspTerror.setNombreArchivoCatalogo("catalogo_bibliotecaEspTerror");
+        bibliotecaEspTerror.setNombreArchivoCatalogo("bibliotecaEspTerror");
 
         //creamos algunos libros (no están en ningun catalogo)
         LibroTerror libroTerror1 = new LibroTerror(1, "Frankenstein", "Mary Shelley", 168, 14);

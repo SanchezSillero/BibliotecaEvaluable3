@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.*;
 
 public abstract class Biblioteca implements Serializable {
+    private static final long serialVersionUID = 18575678987654321L;
+
     private String nombre;
     private String director;
     private Catalogo catalogo;
@@ -159,6 +161,8 @@ public abstract class Biblioteca implements Serializable {
 
 
     class Catalogo implements Serializable{
+        private static final long serialVersionUID = 92345678987654321L;
+
         int capacidad;
         ArrayList<Libro> listaLibrosCatalogo;
 
@@ -254,5 +258,13 @@ public abstract class Biblioteca implements Serializable {
     }
     public void setNombreArchivoCatalogo(String nombreArchivoCatalogo){
         this.nombreArchivoCatalogo = nombreArchivoCatalogo;
+    }
+
+    public Catalogo getCatalogo() {
+        return catalogo;
+    }
+
+    public void setCatalogo(Catalogo catalogo) {
+        this.catalogo = catalogo;
     }
 }

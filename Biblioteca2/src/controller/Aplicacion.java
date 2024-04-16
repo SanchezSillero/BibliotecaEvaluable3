@@ -4,6 +4,7 @@ import exceptions.LibroNoEncontradoException;
 import exceptions.SinHuecoEnCatalogoException;
 import model.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aplicacion {
@@ -40,7 +41,7 @@ public class Aplicacion {
             opcion = scanner.nextInt();
             if (opcion >= 1 && opcion <= bibliotecas.length) {//validamos si la opcion esta dentro del rango de bibliotecas
                 System.out.println("\t-----" + bibliotecas[opcion - 1].getNombre() + "-----");
-                cargarCatalogoDesdeArchivo(bibliotecas[opcion - 1], bibliotecas[opcion - 1].getNombreArchivoCatalogo());//cargamos el catalogo de la biblioteca selecc
+               // cargarCatalogoDesdeArchivo(bibliotecas[opcion - 1], bibliotecas[opcion - 1].getNombreArchivoCatalogo());//cargamos el catalogo de la biblioteca selecc
                 aplicaciones[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub dela aplicacion correspondiente a la biblioteca seleccionada
             } else if (opcion == bibliotecas.length + 1) { //verificamos si la opcion es la del apendice salir del menu
                 System.out.println("¡HASTA PRONTO!");
@@ -101,9 +102,8 @@ public class Aplicacion {
                 }
                 case 7: {
                     String nombreArchivo = biblioteca.getNombreArchivoCatalogo();
-                    for (Libro libro : biblioteca.getListaLibrosCatalogo()) {
-                        operacionesCatalogo.escrituraObjeto(libro, nombreArchivo);
-                    }
+                    ArrayList<Libro> libros = biblioteca.getListaLibrosCatalogo();
+                    operacionesCatalogo.escrituraLibro(nombreArchivo, libros);
                     System.out.println("Catálogo guardado en el archivo "+nombreArchivo);
                     pulseEnter();
                     break;
@@ -124,7 +124,9 @@ public class Aplicacion {
         System.out.println("\n\t\t\t    Pulse Enter para continuar");
         scanner.nextLine();
     }
-    public void cargarCatalogoDesdeArchivo(Biblioteca biblioteca, String nombreArchivo) {
-        operacionesCatalogo.lecturaObjeto(nombreArchivo);
+
+    public void  cargarCatalogo(){
+        String nombreArchivo = biblioteca.getNombreArchivoCatalogo();
+        ArrayList<Libro> libros = operacionesCatalogo.lecturaLibro(nombreArchivo);
     }
 }

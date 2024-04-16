@@ -4,19 +4,21 @@ import model.Biblioteca;
 import model.Libro;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class OperacionesFicheros {
     Biblioteca biblioteca;
     Libro libro;
+    private static final String rutaCatalogos = "Biblioteca2/src/resources/catalogos/";
 
-    public void escrituraObjeto(Libro libro, String nombreArchivo) {
-        File carpeta = new File("Biblioteca2/src/resources/catalogos");
+    public void escrituraLibro(String nombreArchivo, ArrayList<Libro> libros) {
+        File carpeta = new File(rutaCatalogos);
         if (!carpeta.exists()) {  //creamos la carpeta para almacenar catalogos
             System.out.println("creando carpeta");
             carpeta.mkdir();
             System.out.println("carpeta creada");
         }
-        File file = new File("Biblioteca2/src/resources/catalogos/"+nombreArchivo);
+        File file = new File(rutaCatalogos+"libros_"+nombreArchivo);
         if (!file.exists()) {
             System.out.println("creando fichero");
             try {
@@ -29,7 +31,9 @@ public class OperacionesFicheros {
         ObjectOutputStream objectOutputStream = null;
         try {
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
-            objectOutputStream.writeObject(libro);
+            for (Libro libro : libros) {
+                objectOutputStream.writeObject(libro);
+            }
             System.out.println("Datos guardados en el fichero correctamente");
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -44,22 +48,27 @@ public class OperacionesFicheros {
         }
     }
 
-    public void lecturaObjeto(String nombreArchivo) {
-        File file = new File("Biblioteca2/src/resources/catalogos/"+nombreArchivo);
+    public ArrayList<Libro> lecturaLibro(String nombreArchivo) {
+        ArrayList<Libro> libros = new ArrayList<>();
+        File file = new File(rutaCatalogos+"libros_"+nombreArchivo);
         if (!file.exists()) {
             System.out.println("No existe el fichero");
         }
         ObjectInputStream objectInputStream = null;
         try {
             objectInputStream = new ObjectInputStream(new FileInputStream(file));
-            Libro libro = (Libro) objectInputStream.readObject();
-           // System.out.println("mostrando los datos que hay en el fichero");
-           // System.out.println(libro);
-
-        } catch (IOException e) {
-            System.out.println("Error en la lectura");
+            while (true) {
+                try {
+                    Libro libro = (Libro) objectInputStream.readObject();
+                    libros.add(libro);
+                }catch (EOFException e){
+                    break;
+                }
+            }
         } catch (ClassNotFoundException e) {
             System.out.println("Clase no encontrada");
+        } catch (IOException e) {
+            System.out.println("Error en la lectura");
         } finally {
             try {
                 objectInputStream.close();
@@ -69,5 +78,6 @@ public class OperacionesFicheros {
                 System.out.println("Cerrado en nulo");
             }
         }
+        return libros;
     }
-  }
+}
