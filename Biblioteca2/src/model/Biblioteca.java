@@ -3,13 +3,14 @@ package model;
 import exceptions.LibroNoEncontradoException;
 import exceptions.SinHuecoEnCatalogoException;
 
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class Biblioteca {
+public abstract class Biblioteca implements Serializable {
     private String nombre;
     private String director;
     private Catalogo catalogo;
-    private Scanner scanner = new Scanner(System.in);
+    private transient Scanner scanner = new Scanner(System.in);
     private static ArrayList<Libro> listaLibros = new ArrayList<>(); //lista de libros compartida por cualquier instancia de Biblioteca (static)
 
     public Biblioteca() {
@@ -150,7 +151,11 @@ public abstract class Biblioteca {
         }
     }
 
-    class Catalogo {
+    public ArrayList<Libro> getListaLibrosCatalogo(){
+        return catalogo.listaLibrosCatalogo;
+    }
+
+    class Catalogo implements Serializable{
         int capacidad;
         ArrayList<Libro> listaLibrosCatalogo;
 

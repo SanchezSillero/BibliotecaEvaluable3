@@ -23,6 +23,7 @@ public class Terror extends Libro {
     @Override
     public void pedirDatosLibro() {
         super.pedirDatosLibro();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce la clasificación por edad");
         calificacionEdad = scanner.nextInt();
     }
@@ -50,13 +51,5 @@ public class Terror extends Libro {
 
     public void setCalificacionEdad(int calificacionEdad) {
         this.calificacionEdad = calificacionEdad;
-    }
-
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
     }
 }

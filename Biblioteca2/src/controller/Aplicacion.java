@@ -7,7 +7,7 @@ import model.*;
 import java.util.Scanner;
 
 public class Aplicacion {
-    private Scanner scanner = new Scanner(System.in);
+    private transient Scanner scanner = new Scanner(System.in);
     private Biblioteca biblioteca;
 
     public Aplicacion() {
@@ -17,10 +17,13 @@ public class Aplicacion {
         this.biblioteca = biblioteca;
     }
 
+    OperacionesFicheros operacionesCatalogo = new OperacionesFicheros();
+
+
     public void menu(Biblioteca... bibliotecas) { //los ... indica que el parametro es un array variable
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
         pulseEnter();
-       // scanner.nextLine();
+        // scanner.nextLine();
 
         int opcion;
         Aplicacion[] aplicaciones = new Aplicacion[bibliotecas.length]; //creamos un array de aplicaciones, uno para cada objeto Biblioteca
@@ -96,6 +99,10 @@ public class Aplicacion {
                     break;
                 }
                 case 7: {
+                    for (Libro libro : biblioteca.getListaLibrosCatalogo()) {
+                        operacionesCatalogo.escrituraObjeto(libro);
+                    }
+
 
                     pulseEnter();
                     break;

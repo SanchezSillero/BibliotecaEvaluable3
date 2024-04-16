@@ -9,7 +9,7 @@ public abstract class Libro implements Serializable {
     protected String titulo;
     protected String autor;
     protected int numeroPaginas;
-    protected Scanner scanner = new Scanner(System.in);
+
 
     public Libro() {
     }
@@ -29,6 +29,7 @@ public abstract class Libro implements Serializable {
     }
 
     public void pedirDatosLibro() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce los datos del libro");
         System.out.println("ISBN:");
         isbn = scanner.nextInt();

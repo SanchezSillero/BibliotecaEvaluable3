@@ -22,6 +22,7 @@ public class Comedia extends Libro {
     @Override
     public void pedirDatosLibro() {
         super.pedirDatosLibro();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el tipo de humor (absurdo, blanco, satira, parodia o negro)");
         String tipoDeHumorStr = scanner.nextLine();
         tipoDeHumor = TipoHumor.valueOf(tipoDeHumorStr.toLowerCase());

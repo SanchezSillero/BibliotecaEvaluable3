@@ -1,5 +1,5 @@
 import controller.Aplicacion;
-import exceptions.SinHuecoEnCatalogoException;
+import controller.OperacionesFicheros;
 import model.*;
 
 import java.util.ArrayList;
@@ -51,7 +51,5 @@ public class Entrada {
         //CREAMOS UNA INSTANCIA DE LA APLICACION
         Aplicacion aplicacion = new Aplicacion();
         aplicacion.menu(bibliotecaGenerica, bibliotecaEspEnsayos, bibliotecaEspTerror);//podemos meter tantas bibliotecas como tengamos instanciadas
-
-
     }
 }

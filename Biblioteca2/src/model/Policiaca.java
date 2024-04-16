@@ -16,7 +16,7 @@ public class Policiaca extends Libro {
         this.listaPersonajes = listaPersonajes;
     }
 
-    private Scanner scanner = new Scanner(System.in);
+
 
     @Override
     public void mostrarDatos() {
@@ -31,6 +31,7 @@ public class Policiaca extends Libro {
     @Override
     public void pedirDatosLibro() {
         super.pedirDatosLibro();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce la trama (misterio/intriga)");
         String tramaStr = scanner.nextLine();
         trama = Trama.valueOf(tramaStr.toLowerCase());
@@ -38,6 +39,7 @@ public class Policiaca extends Libro {
     }
 
     public ArrayList<String> pedirPersonajes() {
+        Scanner scanner = new Scanner(System.in);
         ArrayList<String> listaPersonajes = new ArrayList<>();
         System.out.println("Introduce los nombres de los personajes (presiona Enter después de cada nombre, escribe 'fin' para terminar):");
         String nombrePersonaje;

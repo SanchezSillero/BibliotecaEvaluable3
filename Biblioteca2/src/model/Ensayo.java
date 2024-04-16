@@ -22,6 +22,7 @@ public class Ensayo extends Libro {
     @Override
     public void pedirDatosLibro() {
         super.pedirDatosLibro();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce la temática");
         tematica = scanner.nextLine();
     }
