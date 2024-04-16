@@ -41,7 +41,7 @@ public class Aplicacion {
             opcion = scanner.nextInt();
             if (opcion >= 1 && opcion <= bibliotecas.length) {//validamos si la opcion esta dentro del rango de bibliotecas
                 System.out.println("\t-----" + bibliotecas[opcion - 1].getNombre() + "-----");
-               // cargarCatalogoDesdeArchivo(bibliotecas[opcion - 1], bibliotecas[opcion - 1].getNombreArchivoCatalogo());//cargamos el catalogo de la biblioteca selecc
+                cargarCatalogo(bibliotecas[opcion - 1]/*, bibliotecas[opcion - 1].getNombreArchivoCatalogo()*/);//cargamos el catalogo de la biblioteca selecc
                 aplicaciones[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub dela aplicacion correspondiente a la biblioteca seleccionada
             } else if (opcion == bibliotecas.length + 1) { //verificamos si la opcion es la del apendice salir del menu
                 System.out.println("¡HASTA PRONTO!");
@@ -125,8 +125,17 @@ public class Aplicacion {
         scanner.nextLine();
     }
 
-    public void  cargarCatalogo(){
+    public void  cargarCatalogo(Biblioteca biblioteca){
         String nombreArchivo = biblioteca.getNombreArchivoCatalogo();
         ArrayList<Libro> libros = operacionesCatalogo.lecturaLibro(nombreArchivo);
+        int capacidad = libros.size();
+        biblioteca.construirCatalogoCarga(capacidad);
+        for (Libro item : libros) {
+            try {
+                biblioteca.agregarLibroCargado(item);
+            } catch (SinHuecoEnCatalogoException e) {
+                System.out.println(e.getMessage());;
+            }
+        }
     }
 }

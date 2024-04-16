@@ -70,6 +70,15 @@ public abstract class Biblioteca implements Serializable {
         }
     }
 
+    public void construirCatalogoCarga(int capacidad) {
+        if (catalogo == null) {
+                this.catalogo = new Catalogo(capacidad);
+                System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
+        } else {
+            System.out.println("Ya existe un catálogo en la biblioteca");
+        }
+    }
+
     public void borrarCatalogo() {
         if (catalogo != null) {
             catalogo = null;
@@ -127,6 +136,10 @@ public abstract class Biblioteca implements Serializable {
     public void agregarLibroAlCatalogo() throws SinHuecoEnCatalogoException {
         Libro libro = generarLibro();
         agregarLibroListaCompartida(libro);
+        catalogo.agregarLibro(libro);
+    }
+
+    public void agregarLibroCargado(Libro libro) throws SinHuecoEnCatalogoException {
         catalogo.agregarLibro(libro);
     }
 
