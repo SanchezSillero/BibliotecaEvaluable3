@@ -9,14 +9,14 @@ public class OperacionesFicheros {
     Biblioteca biblioteca;
     Libro libro;
 
-    public void escrituraObjeto(Libro libro) {
+    public void escrituraObjeto(Libro libro, String nombreArchivo) {
         File carpeta = new File("Biblioteca2/src/resources/catalogos");
         if (!carpeta.exists()) {  //creamos la carpeta para almacenar catalogos
             System.out.println("creando carpeta");
             carpeta.mkdir();
             System.out.println("carpeta creada");
         }
-        File file = new File("Biblioteca2/src/resources/catalogos/libros.obj");
+        File file = new File("Biblioteca2/src/resources/catalogos/"+nombreArchivo);
         if (!file.exists()) {
             System.out.println("creando fichero");
             try {
@@ -44,8 +44,8 @@ public class OperacionesFicheros {
         }
     }
 
-    public void lecturaObjeto() {
-        File file = new File("Biblioteca2/src/resources/catalogos/libros.obj");
+    public void lecturaObjeto(String nombreArchivo) {
+        File file = new File("Biblioteca2/src/resources/catalogos/"+nombreArchivo);
         if (!file.exists()) {
             System.out.println("No existe el fichero");
         }
@@ -53,8 +53,8 @@ public class OperacionesFicheros {
         try {
             objectInputStream = new ObjectInputStream(new FileInputStream(file));
             Libro libro = (Libro) objectInputStream.readObject();
-            System.out.println("mostrando los datos que hay en el fichero");
-            System.out.println(libro);
+           // System.out.println("mostrando los datos que hay en el fichero");
+           // System.out.println(libro);
 
         } catch (IOException e) {
             System.out.println("Error en la lectura");

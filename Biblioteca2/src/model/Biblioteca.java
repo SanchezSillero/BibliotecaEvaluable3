@@ -12,6 +12,7 @@ public abstract class Biblioteca implements Serializable {
     private Catalogo catalogo;
     private transient Scanner scanner = new Scanner(System.in);
     private static ArrayList<Libro> listaLibros = new ArrayList<>(); //lista de libros compartida por cualquier instancia de Biblioteca (static)
+    private String nombreArchivoCatalogo;
 
     public Biblioteca() {
     }
@@ -155,6 +156,8 @@ public abstract class Biblioteca implements Serializable {
         return catalogo.listaLibrosCatalogo;
     }
 
+
+
     class Catalogo implements Serializable{
         int capacidad;
         ArrayList<Libro> listaLibrosCatalogo;
@@ -244,5 +247,12 @@ public abstract class Biblioteca implements Serializable {
 
     public static void setListaLibros(ArrayList<Libro> listaLibros) {
         Biblioteca.listaLibros = listaLibros;
+    }
+
+    public String getNombreArchivoCatalogo() {
+        return nombreArchivoCatalogo;
+    }
+    public void setNombreArchivoCatalogo(String nombreArchivoCatalogo){
+        this.nombreArchivoCatalogo = nombreArchivoCatalogo;
     }
 }
