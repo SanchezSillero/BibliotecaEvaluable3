@@ -57,6 +57,18 @@ public class Policiaca extends Libro {
         return policiaca;
     }
 
+    @Override
+    public String toString() {
+        return "Policiaca{" +
+                "isbn=" + isbn +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", numeroPaginas=" + numeroPaginas +
+                ", trama=" + trama +
+                ", listaPersonajes=" + listaPersonajes +
+                '}';
+    }
+
     public Trama getTrama() {
         return trama;
     }

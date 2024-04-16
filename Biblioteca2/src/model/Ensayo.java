@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Ensayo extends Libro {
     private String tematica;
-    private Scanner scanner = new Scanner(System.in);
 
     public Ensayo() {
     }
@@ -31,6 +30,17 @@ public class Ensayo extends Libro {
         pedirDatosLibro();
         Ensayo ensayo = new Ensayo(isbn,titulo,autor,numeroPaginas, tematica);
         return ensayo;
+    }
+
+    @Override
+    public String toString() {
+        return "Ensayo{" +
+                "isbn=" + isbn +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", numeroPaginas=" + numeroPaginas +
+                ", tematica='" + tematica + '\'' +
+                '}';
     }
 
     public String getTematica() {

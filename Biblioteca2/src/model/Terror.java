@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Terror extends Libro {
     private int calificacionEdad;
-    private Scanner scanner = new Scanner(System.in);
 
 
     public Terror() {
@@ -32,6 +31,17 @@ public class Terror extends Libro {
         pedirDatosLibro();
         Terror terror = new Terror(isbn, titulo, autor, numeroPaginas, calificacionEdad);
         return terror;
+    }
+
+    @Override
+    public String toString() {
+        return "Terror{" +
+                "isbn=" + isbn +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", numeroPaginas=" + numeroPaginas +
+                ", calificacionEdad=" + calificacionEdad +
+                '}';
     }
 
     public int getCalificacionEdad() {

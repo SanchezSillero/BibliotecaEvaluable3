@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Comedia extends Libro {
     private TipoHumor tipoDeHumor;
-    private Scanner scanner = new Scanner(System.in);
 
     public Comedia() {
     }
@@ -28,11 +27,24 @@ public class Comedia extends Libro {
         tipoDeHumor = TipoHumor.valueOf(tipoDeHumorStr.toLowerCase());
     }
 
+    @Override
+    public String toString() {
+        return "Comedia{" +
+                "isbn=" + isbn +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", numeroPaginas=" + numeroPaginas +
+                ", tipoDeHumor=" + tipoDeHumor +
+                '}';
+    }
+
     public  Comedia generarComedia(){
         pedirDatosLibro();
         Comedia comedia = new Comedia(isbn,titulo,autor,numeroPaginas,tipoDeHumor);
         return comedia;
     }
+
+
 
     public TipoHumor getTipoDeHumor() {
         return tipoDeHumor;

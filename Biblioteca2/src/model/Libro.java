@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Libro{
+public abstract class Libro implements Serializable {
+    private static final long serialVersionUID = 12345678987654321L;
     protected int isbn;
     protected String titulo;
     protected String autor;
@@ -39,6 +41,15 @@ public abstract class Libro{
         numeroPaginas = scanner.nextInt();
     }
 
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "isbn=" + isbn +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", numeroPaginas=" + numeroPaginas +
+                '}';
+    }
 
     public int getIsbn() {
         return isbn;
