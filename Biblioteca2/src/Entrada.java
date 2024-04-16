@@ -1,5 +1,4 @@
 import controller.Aplicacion;
-import controller.OperacionesFicheros;
 import model.*;
 
 import java.util.ArrayList;
@@ -12,18 +11,18 @@ public class Entrada {
         Biblioteca bibliotecaEspTerror = new BibliotecaEspecializada("Biblioteca Halloween", "María José Ruiz", Tematica.terror);//solo aceptara libros de TERROR
 
         //creamos algunos libros (no están en ningun catalogo)
-        Terror libroTerror1 = new Terror(1, "Frankenstein", "Mary Shelley", 168, 14);
-        Comedia libroComedia1 = new Comedia(2, "La vida secreta de Walter Mitty", "James Thurber", 160, TipoHumor.parodia);
+        LibroTerror libroTerror1 = new LibroTerror(1, "Frankenstein", "Mary Shelley", 168, 14);
+        LibroComedia libroComedia1 = new LibroComedia(2, "La vida secreta de Walter Mitty", "James Thurber", 160, TipoHumor.parodia);
         Ensayo ensayo1 = new Ensayo(3, "Los orígenes de la creatividad humana", "Edward O.Wilson", 256, "Evolución Humana");
         ArrayList<String> listaPersonajesLibroPoliciaca1 = new ArrayList<>();
         listaPersonajesLibroPoliciaca1.add("Auguste Dupin");
         listaPersonajesLibroPoliciaca1.add("Narrador");
         listaPersonajesLibroPoliciaca1.add("Madame L'Espanaye");
-        Policiaca libroPoliciaca1 = new Policiaca(4, "Los crímenes de la calle Morgue", "Edgar Allan Poe", 66, Trama.intriga, listaPersonajesLibroPoliciaca1);
+        LibroPoliciaca libroPoliciaca1 = new LibroPoliciaca(4, "Los crímenes de la calle Morgue", "Edgar Allan Poe", 66, Trama.intriga, listaPersonajesLibroPoliciaca1);
         Ensayo ensayo2 = new Ensayo(5, "El arte de la guerra", "Sun Tzu", 112, "Estrategia");
 
         //añadimos estos libros a la lista (estatica) que comparten todas las bibliotecas(Fuera de sus respectivos catálogos)(se puede hacer desde cualquier instancia de biblioteca)
-        /*bibliotecaGenerica.agregarLibroListaCompartida(libroTerror1);
+        bibliotecaGenerica.agregarLibroListaCompartida(libroTerror1);
         bibliotecaEspTerror.agregarLibroListaCompartida(libroComedia1);//vemos que aqui no hay problemas por agregar un libro que no es de su tematica
         bibliotecaGenerica.agregarLibroListaCompartida(libroTerror1);//comprobamos que no nos deja añadir libros con el mismo ISBN
         bibliotecaGenerica.agregarLibroListaCompartida(libroPoliciaca1);

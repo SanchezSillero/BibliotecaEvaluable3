@@ -11,16 +11,16 @@ public class BibliotecaEspecializada extends Biblioteca{
     @Override
     public void agregarLibroAlCatalogo() throws SinHuecoEnCatalogoException {
         Libro libro = generarLibro();
-        if ( libro instanceof Terror && tematica.equals(Tematica.terror)){
+        if ( libro instanceof LibroTerror && tematica.equals(Tematica.terror)){
             super.agregarLibroAlCatalogo();
         }
         if ( libro instanceof Ensayo && tematica.equals(Tematica.ensayo)){
             super.agregarLibroAlCatalogo();
         }
-        if ( libro instanceof Comedia && tematica.equals(Tematica.comedia)){
+        if ( libro instanceof LibroComedia && tematica.equals(Tematica.comedia)){
             super.agregarLibroAlCatalogo();
         }
-        if ( libro instanceof Policiaca && tematica.equals(Tematica.policiaca)){
+        if ( libro instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)){
             super.agregarLibroAlCatalogo();
         }
     }

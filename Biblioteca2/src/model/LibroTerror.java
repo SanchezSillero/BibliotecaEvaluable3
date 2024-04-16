@@ -2,14 +2,14 @@ package model;
 
 import java.util.Scanner;
 
-public class Terror extends Libro {
+public class LibroTerror extends Libro {
     private int calificacionEdad;
 
 
-    public Terror() {
+    public LibroTerror() {
     }
 
-    public Terror(int isbn, String titulo, String autor, int numeroPaginas, int calificacionEdad) {
+    public LibroTerror(int isbn, String titulo, String autor, int numeroPaginas, int calificacionEdad) {
         super(isbn, titulo, autor, numeroPaginas);
         this.calificacionEdad = calificacionEdad;
     }
@@ -28,15 +28,15 @@ public class Terror extends Libro {
         calificacionEdad = scanner.nextInt();
     }
 
-    public Terror generarTerror(){
+    public LibroTerror generarTerror(){
         pedirDatosLibro();
-        Terror terror = new Terror(isbn, titulo, autor, numeroPaginas, calificacionEdad);
-        return terror;
+        LibroTerror libroTerror = new LibroTerror(isbn, titulo, autor, numeroPaginas, calificacionEdad);
+        return libroTerror;
     }
 
     @Override
     public String toString() {
-        return "Terror{" +
+        return "LibroTerror{" +
                 "isbn=" + isbn +
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +

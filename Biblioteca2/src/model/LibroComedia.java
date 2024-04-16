@@ -2,13 +2,13 @@ package model;
 
 import java.util.Scanner;
 
-public class Comedia extends Libro {
+public class LibroComedia extends Libro {
     private TipoHumor tipoDeHumor;
 
-    public Comedia() {
+    public LibroComedia() {
     }
 
-    public Comedia(int isbn, String titulo, String autor, int numeroPaginas, TipoHumor tipoDeHumor) {
+    public LibroComedia(int isbn, String titulo, String autor, int numeroPaginas, TipoHumor tipoDeHumor) {
         super(isbn, titulo, autor, numeroPaginas);
         this.tipoDeHumor = tipoDeHumor;
     }
@@ -30,7 +30,7 @@ public class Comedia extends Libro {
 
     @Override
     public String toString() {
-        return "Comedia{" +
+        return "LibroComedia{" +
                 "isbn=" + isbn +
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
@@ -39,10 +39,10 @@ public class Comedia extends Libro {
                 '}';
     }
 
-    public  Comedia generarComedia(){
+    public LibroComedia generarComedia(){
         pedirDatosLibro();
-        Comedia comedia = new Comedia(isbn,titulo,autor,numeroPaginas,tipoDeHumor);
-        return comedia;
+        LibroComedia libroComedia = new LibroComedia(isbn,titulo,autor,numeroPaginas,tipoDeHumor);
+        return libroComedia;
     }
 
 

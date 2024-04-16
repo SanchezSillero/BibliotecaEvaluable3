@@ -24,11 +24,13 @@ public class OperacionesFicheros {
             } catch (IOException e) {
                 System.out.println("Fallo en la creación del fichero");
             }
+            System.out.println("fichero creado");
         }
         ObjectOutputStream objectOutputStream = null;
         try {
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
             objectOutputStream.writeObject(libro);
+            System.out.println("Datos guardados en el fichero correctamente");
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -43,30 +45,15 @@ public class OperacionesFicheros {
     }
 
     public void lecturaObjeto() {
-        File carpeta = new File("Biblioteca2/src/resources/catalogos");
-        if (!carpeta.exists()) {  //creamos la carpeta para almacenar catalogos
-            carpeta.mkdir();
-        }
-       /* if (carpeta.isDirectory()) {
-            File[] ficheros = carpeta.listFiles();
-            for (File item : ficheros) {
-                System.out.println(item.getName());
-            }
-        }*/
         File file = new File("Biblioteca2/src/resources/catalogos/libros.obj");
         if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Fallo en la creación del fichero");
-            }
+            System.out.println("No existe el fichero");
         }
-
-
         ObjectInputStream objectInputStream = null;
-       /* try {
+        try {
             objectInputStream = new ObjectInputStream(new FileInputStream(file));
-            Libro libro = (Libro)objectInputStream.readObject();
+            Libro libro = (Libro) objectInputStream.readObject();
+            System.out.println("mostrando los datos que hay en el fichero");
             System.out.println(libro);
 
         } catch (IOException e) {
@@ -80,6 +67,7 @@ public class OperacionesFicheros {
                 System.out.println("Error en el cerrado");
             } catch (NullPointerException e) {
                 System.out.println("Cerrado en nulo");
-            }*/
+            }
+        }
     }
-}
+  }

@@ -3,14 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Policiaca extends Libro {
+public class LibroPoliciaca extends Libro {
     Trama trama;
     ArrayList<String> listaPersonajes;
 
-    public Policiaca() {
+    public LibroPoliciaca() {
     }
 
-    public Policiaca(int isbn, String titulo, String autor, int numeroPaginas, Trama trama, ArrayList<String> listaPersonajes) {
+    public LibroPoliciaca(int isbn, String titulo, String autor, int numeroPaginas, Trama trama, ArrayList<String> listaPersonajes) {
         super(isbn, titulo, autor, numeroPaginas);
         this.trama = trama;
         this.listaPersonajes = listaPersonajes;
@@ -52,16 +52,16 @@ public class Policiaca extends Libro {
         return listaPersonajes;
     }
 
-    public Policiaca generarPoliciaca(){
+    public LibroPoliciaca generarPoliciaca(){
         pedirDatosLibro();
         pedirPersonajes();
-        Policiaca policiaca = new Policiaca(isbn, titulo, autor, numeroPaginas, trama, listaPersonajes);
-        return policiaca;
+        LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, titulo, autor, numeroPaginas, trama, listaPersonajes);
+        return libroPoliciaca;
     }
 
     @Override
     public String toString() {
-        return "Policiaca{" +
+        return "LibroPoliciaca{" +
                 "isbn=" + isbn +
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +

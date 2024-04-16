@@ -93,11 +93,11 @@ public abstract class Biblioteca implements Serializable {
     }
 
     public Libro generarLibro() throws IllegalArgumentException {
-        System.out.println("¿Qué tipo de libro va a agregar?\n\t1. Terror\n\t2. Ensayo\n\t3. Comedia\n\t4. Policiaca");
+        System.out.println("¿Qué tipo de libro va a agregar?\n\t1. LibroTerror\n\t2. Ensayo\n\t3. LibroComedia\n\t4. LibroPoliciaca");
         int tipoLibro = scanner.nextInt();
         switch (tipoLibro) {
             case 1: {
-                Terror libroAgregar = new Terror();
+                LibroTerror libroAgregar = new LibroTerror();
                 libroAgregar.generarTerror();
                 return libroAgregar;
             }
@@ -107,12 +107,12 @@ public abstract class Biblioteca implements Serializable {
                 return libroAgregar;
             }
             case 3: {
-                Comedia libroAgregar = new Comedia();
+                LibroComedia libroAgregar = new LibroComedia();
                 libroAgregar.generarComedia();
                 return libroAgregar;
             }
             case 4: {
-                Policiaca libroAgregar = new Policiaca();
+                LibroPoliciaca libroAgregar = new LibroPoliciaca();
                 libroAgregar.generarPoliciaca();
                 return libroAgregar;
             }

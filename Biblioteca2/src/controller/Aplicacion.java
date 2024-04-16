@@ -101,9 +101,8 @@ public class Aplicacion {
                 case 7: {
                     for (Libro libro : biblioteca.getListaLibrosCatalogo()) {
                         operacionesCatalogo.escrituraObjeto(libro);
+                        operacionesCatalogo.lecturaObjeto();
                     }
-
-
                     pulseEnter();
                     break;
                 }
