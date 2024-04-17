@@ -1,4 +1,6 @@
 import controller.Aplicacion;
+import controller.OperacionesFicheros;
+import exceptions.SinHuecoEnCatalogoException;
 import model.*;
 
 import java.util.ArrayList;
@@ -31,27 +33,40 @@ public class Entrada {
         bibliotecaGenerica.agregarLibroListaCompartida(libroPoliciaca1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo2);
-        bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas*/
+       // bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas
 
+ /*
         //2. CREAMOS CATALOGO DE 4 LIBROS
-
-
+        bibliotecaGenerica.construirCatalogoCarga(4);
 
 
         //3. AGREGAMOS 5 LIBROS AL CATALOGO
-        /*bibliotecaGenerica.agregarLibro(libroComedia1);
-        bibliotecaGenerica.agregarLibro(libroPoliciaca1);
-        bibliotecaGenerica.agregarLibro(libroTerror1);
-        bibliotecaGenerica.agregarLibro(ensayo1);
-        bibliotecaGenerica.agregarLibro(ensayo2);// vemos que no hay espacio para este libro*/
+        try {
+            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(libroComedia1);
+            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(libroPoliciaca1);
+            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(libroTerror1);
+            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(ensayo1);
+            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(ensayo2);// vemos que no hay espacio para este libro
+        } catch (SinHuecoEnCatalogoException e) {
+            System.out.println(e.getMessage());
+        }
 
         //4. MOSTRAMOS INFORMACION DE LOS LIBROS
-        //bibliotecaGenerica.mostrarDatos();
+            bibliotecaGenerica.mostrarDatos();
 
         //5. EXPORTAMOS LOS LIBROS DEL CATALOGO A UN FICHERO
+        OperacionesFicheros operacionesFicheros = new OperacionesFicheros();
+        String nombreArchivo = bibliotecaGenerica.getNombreArchivoCatalogo();
+        ArrayList<Libro> libros = bibliotecaGenerica.getListaLibrosCatalogo();
+        operacionesFicheros.escrituraLibro(nombreArchivo, libros);
+*/
+        /*Hasta aquí el método main desarrolla los puntos que requiere el ejercicio, pero se
+          ha desarrollado un aplicacion para gestionar estas cuestiones en cualquier instancia de Biblioteca,
+          así como mantener su datos mediante ficheros*/
+
 
         //CREAMOS UNA INSTANCIA DE LA APLICACION
-        Aplicacion aplicacion = new Aplicacion();
-        aplicacion.menu(bibliotecaGenerica, bibliotecaEspEnsayos, bibliotecaEspTerror);//podemos meter tantas bibliotecas como tengamos instanciadas
+          Aplicacion aplicacion = new Aplicacion();
+          aplicacion.menu(bibliotecaGenerica, bibliotecaEspEnsayos, bibliotecaEspTerror);//podemos meter tantas bibliotecas como tengamos instanciadas
     }
 }

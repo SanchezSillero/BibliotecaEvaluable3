@@ -76,6 +76,7 @@ public class Aplicacion {
                 }
                 case 3: { //COnsultamos todos los libros del catalogo, el de la biblioteca
                     biblioteca.mostrarDatos();
+                    scanner.nextLine();
                     pulseEnter();
                     break;
                 }
@@ -138,4 +139,6 @@ public class Aplicacion {
             }
         }
     }
+    public void cargarLibrosListaEstatica(){}
+    public void guardarLibrosListaEstatica(){}
 }

@@ -30,6 +30,7 @@ public class OperacionesFicheros {
         }
         ObjectOutputStream objectOutputStream = null;
         try {
+            System.out.println("Guardando datos en el fichero");
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
             for (Libro libro : libros) {
                 objectOutputStream.writeObject(libro);

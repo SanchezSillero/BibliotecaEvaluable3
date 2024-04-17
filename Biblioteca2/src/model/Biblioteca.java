@@ -26,13 +26,14 @@ public abstract class Biblioteca implements Serializable {
 
 
     public void mostrarDatos() {
-        System.out.println("\nnombre = " + nombre);
-        System.out.println("director = " + director);
+        System.out.println("\nDATOS DE LA BIBLIOTECA");
+        System.out.println("\tnombre = " + nombre);
+        System.out.println("\tdirector = " + director);
         try {
             if (catalogo.listaLibrosCatalogo.isEmpty()) {
                 System.out.println("No hay libros para mostrar");
             } else {
-                System.out.println("Lista de libros en el catálogo:");
+                System.out.println("\tLista de libros en el catálogo:");
                 System.out.println();
                 Collections.sort(catalogo.listaLibrosCatalogo, Comparator.comparingInt(Libro::getIsbn));
                 for (Libro libro : catalogo.listaLibrosCatalogo) {
@@ -73,7 +74,7 @@ public abstract class Biblioteca implements Serializable {
     public void construirCatalogoCarga(int capacidad) {
         if (catalogo == null) {
                 this.catalogo = new Catalogo(capacidad);
-                System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
+                //System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
         } else {
             System.out.println("Ya existe un catálogo en la biblioteca");
         }
@@ -98,9 +99,9 @@ public abstract class Biblioteca implements Serializable {
         }
         if (!isbnDuplicado) {
             listaLibros.add(libro);
-            System.out.println("Libro añadido correctamente A LA LISTA ESTATICA");
+            System.out.println("Libro añadido correctamente A LA LISTA COMPARTIDA");
         } else {
-            System.out.println("Ya hay un libro con ese ISBN EN LA LISTA ESTATICA, este no se agregará");
+            System.out.println("Ya hay un libro con ese ISBN EN LA LISTA COMPARTIDA, este no se agregará");
         }
     }
 
@@ -136,6 +137,11 @@ public abstract class Biblioteca implements Serializable {
     public void agregarLibroAlCatalogo() throws SinHuecoEnCatalogoException {
         Libro libro = generarLibro();
         agregarLibroListaCompartida(libro);
+        catalogo.agregarLibro(libro);
+        System.out.println("Libro agregado satisfactoriamente al catálogo");
+    }
+
+    public void agregarLibroExistenteAlCatalogo(Libro libro)throws SinHuecoEnCatalogoException{
         catalogo.agregarLibro(libro);
     }
 
@@ -199,7 +205,6 @@ public abstract class Biblioteca implements Serializable {
         public void agregarLibro(Libro libro) throws SinHuecoEnCatalogoException {
             if (capacidad > listaLibrosCatalogo.size() && !estaLibroCatalogo(libro)) {
                 listaLibrosCatalogo.add(libro);
-                System.out.println("Libro agregado satisfactoriamente al catálogo");
             } else if (capacidad <= listaLibrosCatalogo.size()) {
                 throw new SinHuecoEnCatalogoException("No se podido añadir al catálogo por falta de espacio");
             } else if (estaLibroCatalogo(libro)) {
