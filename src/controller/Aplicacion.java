@@ -22,7 +22,7 @@ public class Aplicacion {
 
 
     public void menu(Biblioteca... bibliotecas) { //los ... indica que el parametro es un array variable
-        System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
+        System.out.println("\t\t\uD83D\uDCDA------BIENVENIDO AL GESTOR DE BIBLIOTECAS------\uD83D\uDCDA");
         pulseEnter();
 
         int opcion;
@@ -35,7 +35,7 @@ public class Aplicacion {
             for (int i = 0; i < bibliotecas.length; i++) {  //itteramos para mostrar en pantalla un indice con las bibliotecas que tenemos
                 System.out.println("\t" + (i + 1) + ". " + bibliotecas[i].getNombre());
             }
-            System.out.println("\t" + (bibliotecas.length + 1) + ". Salir");
+            System.out.println("\t" + (bibliotecas.length + 1) + ". Salir⬅\uFE0F");
 
             opcion = scanner.nextInt();
             if (opcion >= 1 && opcion <= bibliotecas.length) {//validamos si la opcion esta dentro del rango de bibliotecas
@@ -55,8 +55,8 @@ public class Aplicacion {
         int opcionSub;
 
         do {
-            System.out.println("\t1. Buscar información sobre un libro\n\t2. Construir un catálogo\n\t3. Consultar " +
-                    "catálogo\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Borrar catálogo\n\t7. Expotar el catálogo a un fichero\n\t8. Salir");
+            System.out.println("\t\uD83D\uDD0D1. Buscar información sobre un libro\n\t\uD83D\uDEE0\uFE0F2. Construir un catálogo\n\t\uD83D\uDCD63. Consultar " +
+                    "catálogo\n\t➕4. Agregar libro al catálogo\n\t➖5. Sacar libro del catálogo\n\t\uD83D\uDDD1\uFE0F6. Borrar catálogo\n\t\uD83D\uDCBE7. Expotar el catálogo a un fichero\n\t⬅\uFE0F8. Salir");
 
             opcionSub = scanner.nextInt();
             switch (opcionSub) {
