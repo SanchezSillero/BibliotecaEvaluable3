@@ -99,7 +99,7 @@ public abstract class Biblioteca implements Serializable {
         }
         if (!isbnDuplicado) {
             listaLibros.add(libro);
-            System.out.println("Libro añadido correctamente A LA LISTA COMPARTIDA");
+            //System.out.println("Libro añadido correctamente A LA LISTA COMPARTIDA");
         } else {
             System.out.println("Ya hay un libro con ese ISBN EN LA LISTA COMPARTIDA, este no se agregará");
         }
@@ -263,7 +263,7 @@ public abstract class Biblioteca implements Serializable {
         this.director = director;
     }
 
-    public static ArrayList<Libro> getListaLibros() {
+    public ArrayList<Libro> getListaLibros() {
         return listaLibros;
     }
 
@@ -274,6 +274,7 @@ public abstract class Biblioteca implements Serializable {
     public String getNombreArchivoCatalogo() {
         return nombreArchivoCatalogo;
     }
+
     public void setNombreArchivoCatalogo(String nombreArchivoCatalogo){
         this.nombreArchivoCatalogo = nombreArchivoCatalogo;
     }

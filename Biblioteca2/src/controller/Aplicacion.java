@@ -41,7 +41,8 @@ public class Aplicacion {
             opcion = scanner.nextInt();
             if (opcion >= 1 && opcion <= bibliotecas.length) {//validamos si la opcion esta dentro del rango de bibliotecas
                 System.out.println("\t-----" + bibliotecas[opcion - 1].getNombre() + "-----");
-                cargarCatalogo(bibliotecas[opcion - 1]/*, bibliotecas[opcion - 1].getNombreArchivoCatalogo()*/);//cargamos el catalogo de la biblioteca selecc
+                cargarLibrosListaEstatica(bibliotecas[opcion - 1]);//cargamos la lista de libros compartida por todas las bibliotecas
+                cargarCatalogo(bibliotecas[opcion - 1]);//cargamos el catalogo de la biblioteca selecc
                 aplicaciones[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub dela aplicacion correspondiente a la biblioteca seleccionada
             } else if (opcion == bibliotecas.length + 1) { //verificamos si la opcion es la del apendice salir del menu
                 System.out.println("¡HASTA PRONTO!");
@@ -111,6 +112,7 @@ public class Aplicacion {
                 }
                 case 8: {
                     System.out.println("Volviendo al menú Bibliotecas");
+                    guardarLibrosListaEstatica();
                     break;
                 }
                 default: {
@@ -139,6 +141,14 @@ public class Aplicacion {
             }
         }
     }
-    public void cargarLibrosListaEstatica(){}
-    public void guardarLibrosListaEstatica(){}
+    public void cargarLibrosListaEstatica(Biblioteca biblioteca){
+        ArrayList<Libro> libros = operacionesCatalogo.lecturaLibro("ListaEstatica.obj");
+        for (Libro item : libros) {
+            biblioteca.agregarLibroListaCompartida(item);
+        }
+    }
+    public void guardarLibrosListaEstatica(){
+       ArrayList<Libro> libros = biblioteca.getListaLibros();
+       operacionesCatalogo.escrituraLibro("ListaEstatica.obj", libros);
+    }
 }
