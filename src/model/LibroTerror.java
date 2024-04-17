@@ -1,5 +1,6 @@
 package model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibroTerror extends Libro {
@@ -25,7 +26,11 @@ public class LibroTerror extends Libro {
         super.pedirDatosLibro();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce la clasificación por edad");
-        calificacionEdad = scanner.nextInt();
+        try{
+            calificacionEdad = scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Edad no válida");
+        }
     }
 
     public LibroTerror generarTerror(){
