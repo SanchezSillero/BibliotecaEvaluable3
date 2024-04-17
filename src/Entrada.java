@@ -9,6 +9,7 @@ public class Entrada {
     public static void main(String[] args) {
         //1. CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS Y DAMOS NOMBRE AL ARCHIVO DE SU CATALAGO
         BibliotecaGeneral bibliotecaGenerica = new BibliotecaGeneral("Biblioteca Municipal", "Francisco Sánchez"); //Acepta cualquier tipo de libro
+
         bibliotecaGenerica.setNombreArchivoCatalogo("bibliotecaGenerica.obj");
         BibliotecaEspecializada bibliotecaEspEnsayos = new BibliotecaEspecializada("Biblioteca Universidad Politécnica", "Patricia Sillero", Tematica.ensayo);//solo aceptara ENSAYOS
         bibliotecaEspEnsayos.setNombreArchivoCatalogo("bibliotecaEspEnsayos.obj");

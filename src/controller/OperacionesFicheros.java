@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class OperacionesFicheros {
     Biblioteca biblioteca;
     Libro libro;
-    private static final String rutaCatalogos = "Biblioteca2/src/resources/catalogos/";
+    private static final String rutaCatalogos = "src/resources/catalogos/";
 
     public void escrituraLibro(String nombreArchivo, ArrayList<Libro> libros) {
         File carpeta = new File(rutaCatalogos);
