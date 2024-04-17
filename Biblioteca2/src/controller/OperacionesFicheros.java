@@ -18,24 +18,24 @@ public class OperacionesFicheros {
             carpeta.mkdir();
             System.out.println("carpeta creada");
         }
-        File file = new File(rutaCatalogos+"libros_"+nombreArchivo);
+        File file = new File(rutaCatalogos + "libros_" + nombreArchivo);
         if (!file.exists()) {
-            System.out.println("creando fichero");
+            //System.out.println("creando fichero");
             try {
                 file.createNewFile();
             } catch (IOException e) {
                 System.out.println("Fallo en la creación del fichero");
             }
-            System.out.println("fichero creado");
+            //System.out.println("fichero creado");
         }
         ObjectOutputStream objectOutputStream = null;
         try {
-            System.out.println("Guardando datos en el fichero");
+            //System.out.println("Guardando datos en el fichero");
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
             for (Libro libro : libros) {
                 objectOutputStream.writeObject(libro);
             }
-            System.out.println("Datos guardados en el fichero correctamente");
+            //System.out.println("Datos guardados en el fichero correctamente");
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -51,7 +51,7 @@ public class OperacionesFicheros {
 
     public ArrayList<Libro> lecturaLibro(String nombreArchivo) {
         ArrayList<Libro> libros = new ArrayList<>();
-        File file = new File(rutaCatalogos+"libros_"+nombreArchivo);
+        File file = new File(rutaCatalogos + "libros_" + nombreArchivo);
         if (!file.exists()) {
             System.out.println("No existe el fichero");
         }
@@ -62,7 +62,7 @@ public class OperacionesFicheros {
                 try {
                     Libro libro = (Libro) objectInputStream.readObject();
                     libros.add(libro);
-                }catch (EOFException e){
+                } catch (EOFException e) {
                     break;
                 }
             }

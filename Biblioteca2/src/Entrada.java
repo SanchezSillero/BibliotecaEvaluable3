@@ -33,20 +33,20 @@ public class Entrada {
         bibliotecaGenerica.agregarLibroListaCompartida(libroPoliciaca1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo2);
-       // bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas
+        // bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas
+/*
 
- /*
         //2. CREAMOS CATALOGO DE 4 LIBROS
         bibliotecaGenerica.construirCatalogoCarga(4);
 
 
         //3. AGREGAMOS 5 LIBROS AL CATALOGO
         try {
-            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(libroComedia1);
-            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(libroPoliciaca1);
-            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(libroTerror1);
-            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(ensayo1);
-            bibliotecaGenerica.agregarLibroExistenteAlCatalogo(ensayo2);// vemos que no hay espacio para este libro
+            bibliotecaGenerica.agregarLibroCargado(libroComedia1);
+            bibliotecaGenerica.agregarLibroCargado(libroPoliciaca1);
+            bibliotecaGenerica.agregarLibroCargado(libroTerror1);
+            bibliotecaGenerica.agregarLibroCargado(ensayo1);
+            bibliotecaGenerica.agregarLibroCargado(ensayo2);// vemos que no hay espacio para este libro
         } catch (SinHuecoEnCatalogoException e) {
             System.out.println(e.getMessage());
         }
@@ -59,14 +59,14 @@ public class Entrada {
         String nombreArchivo = bibliotecaGenerica.getNombreArchivoCatalogo();
         ArrayList<Libro> libros = bibliotecaGenerica.getListaLibrosCatalogo();
         operacionesFicheros.escrituraLibro(nombreArchivo, libros);
-*/
+
         /*Hasta aquí el método main desarrolla los puntos que requiere el ejercicio, pero se
           ha desarrollado un aplicacion para gestionar estas cuestiones en cualquier instancia de Biblioteca,
-          así como mantener su datos mediante ficheros*/
+          así como mantener su datos mediante ficheros
 
-
+*/
         //CREAMOS UNA INSTANCIA DE LA APLICACION
-          Aplicacion aplicacion = new Aplicacion();
-          aplicacion.menu(bibliotecaGenerica, bibliotecaEspEnsayos, bibliotecaEspTerror);//podemos meter tantas bibliotecas como tengamos instanciadas
+        Aplicacion aplicacion = new Aplicacion();
+        aplicacion.menu(bibliotecaGenerica, bibliotecaEspEnsayos, bibliotecaEspTerror);//podemos meter tantas bibliotecas como tengamos instanciadas
     }
 }

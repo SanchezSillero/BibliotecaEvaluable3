@@ -73,8 +73,8 @@ public abstract class Biblioteca implements Serializable {
 
     public void construirCatalogoCarga(int capacidad) {
         if (catalogo == null) {
-                this.catalogo = new Catalogo(capacidad);
-                //System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
+            this.catalogo = new Catalogo(capacidad);
+            //System.out.println("Construido catálogo con capacidad para " + capacidad + " libros");
         } else {
             System.out.println("Ya existe un catálogo en la biblioteca");
         }
@@ -100,9 +100,9 @@ public abstract class Biblioteca implements Serializable {
         if (!isbnDuplicado) {
             listaLibros.add(libro);
             //System.out.println("Libro añadido correctamente A LA LISTA COMPARTIDA");
-        } else {
+        }/* else {
             System.out.println("Ya hay un libro con ese ISBN EN LA LISTA COMPARTIDA, este no se agregará");
-        }
+        }*/
     }
 
     public Libro generarLibro() throws IllegalArgumentException {
@@ -135,20 +135,32 @@ public abstract class Biblioteca implements Serializable {
     }
 
     public void agregarLibroAlCatalogo() throws SinHuecoEnCatalogoException {
-        Libro libro = generarLibro();
-        agregarLibroListaCompartida(libro);
-        catalogo.agregarLibro(libro);
-        System.out.println("Libro agregado satisfactoriamente al catálogo");
-    }
-
-    public void agregarLibroExistenteAlCatalogo(Libro libro)throws SinHuecoEnCatalogoException{
-        catalogo.agregarLibro(libro);
+        System.out.println("Introduce el isbn del libro");
+        int isbn = scanner.nextInt();
+        boolean existeLibro = false;
+        for (Libro item : listaLibros) {
+            if (isbn == item.getIsbn()) {
+                existeLibro = true;
+                break;
+            }
+        }
+        if (!existeLibro){
+            Libro libro = generarLibro();
+            agregarLibroListaCompartida(libro);
+            catalogo.agregarLibro(libro);
+            System.out.println("Libro agregado satisfactoriamente al catálogo");
+        } else {
+            for (Libro item : listaLibros){
+                catalogo.agregarLibro(item);
+                System.out.println("Libro agregado satisfactoriamente al catálogo");
+                break;
+            }
+        }
     }
 
     public void agregarLibroCargado(Libro libro) throws SinHuecoEnCatalogoException {
         catalogo.agregarLibro(libro);
     }
-
 
     public void sacarLibro() {
         try {
@@ -173,13 +185,11 @@ public abstract class Biblioteca implements Serializable {
         }
     }
 
-    public ArrayList<Libro> getListaLibrosCatalogo(){
+    public ArrayList<Libro> getListaLibrosCatalogo() {
         return catalogo.listaLibrosCatalogo;
     }
 
-
-
-    class Catalogo implements Serializable{
+    class Catalogo implements Serializable {
         private static final long serialVersionUID = 92345678987654321L;
 
         int capacidad;
@@ -275,7 +285,7 @@ public abstract class Biblioteca implements Serializable {
         return nombreArchivoCatalogo;
     }
 
-    public void setNombreArchivoCatalogo(String nombreArchivoCatalogo){
+    public void setNombreArchivoCatalogo(String nombreArchivoCatalogo) {
         this.nombreArchivoCatalogo = nombreArchivoCatalogo;
     }
 

@@ -24,7 +24,6 @@ public class Aplicacion {
     public void menu(Biblioteca... bibliotecas) { //los ... indica que el parametro es un array variable
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
         pulseEnter();
-        // scanner.nextLine();
 
         int opcion;
         Aplicacion[] aplicaciones = new Aplicacion[bibliotecas.length]; //creamos un array de aplicaciones, uno para cada objeto Biblioteca
@@ -67,11 +66,13 @@ public class Aplicacion {
                     } catch (LibroNoEncontradoException e) {
                         System.out.println(e.getMessage());
                     }
+                    scanner.nextLine();
                     pulseEnter();
                     break;
                 }
                 case 2: { //Construir un catálogo de n libros
                     biblioteca.construirCatalogo();
+                    scanner.nextLine();
                     pulseEnter();
                     break;
                 }
@@ -89,16 +90,19 @@ public class Aplicacion {
                     } catch (SinHuecoEnCatalogoException e) {
                         System.out.println(e.getMessage());
                     }
+                    scanner.nextLine();
                     pulseEnter();
                     break;
                 }
                 case 5: {
                     biblioteca.sacarLibro();
+                    scanner.nextLine();
                     pulseEnter();
                     break;
                 }
                 case 6: {
                     biblioteca.borrarCatalogo();
+                    scanner.nextLine();
                     pulseEnter();
                     break;
                 }
@@ -106,7 +110,8 @@ public class Aplicacion {
                     String nombreArchivo = biblioteca.getNombreArchivoCatalogo();
                     ArrayList<Libro> libros = biblioteca.getListaLibrosCatalogo();
                     operacionesCatalogo.escrituraLibro(nombreArchivo, libros);
-                    System.out.println("Catálogo guardado en el archivo "+nombreArchivo);
+                    System.out.println("Catálogo guardado en el archivo " + nombreArchivo);
+                    scanner.nextLine();
                     pulseEnter();
                     break;
                 }
@@ -128,7 +133,7 @@ public class Aplicacion {
         scanner.nextLine();
     }
 
-    public void  cargarCatalogo(Biblioteca biblioteca){
+    public void cargarCatalogo(Biblioteca biblioteca) {
         String nombreArchivo = biblioteca.getNombreArchivoCatalogo();
         ArrayList<Libro> libros = operacionesCatalogo.lecturaLibro(nombreArchivo);
         int capacidad = libros.size();
@@ -137,18 +142,21 @@ public class Aplicacion {
             try {
                 biblioteca.agregarLibroCargado(item);
             } catch (SinHuecoEnCatalogoException e) {
-                System.out.println(e.getMessage());;
+                System.out.println(e.getMessage());
+                ;
             }
         }
     }
-    public void cargarLibrosListaEstatica(Biblioteca biblioteca){
+
+    public void cargarLibrosListaEstatica(Biblioteca biblioteca) {
         ArrayList<Libro> libros = operacionesCatalogo.lecturaLibro("ListaEstatica.obj");
         for (Libro item : libros) {
             biblioteca.agregarLibroListaCompartida(item);
         }
     }
-    public void guardarLibrosListaEstatica(){
-       ArrayList<Libro> libros = biblioteca.getListaLibros();
-       operacionesCatalogo.escrituraLibro("ListaEstatica.obj", libros);
+
+    public void guardarLibrosListaEstatica() {
+        ArrayList<Libro> libros = biblioteca.getListaLibros();
+        operacionesCatalogo.escrituraLibro("ListaEstatica.obj", libros);
     }
 }

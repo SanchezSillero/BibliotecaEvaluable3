@@ -2,27 +2,35 @@ package model;
 
 import exceptions.SinHuecoEnCatalogoException;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class BibliotecaEspecializada extends Biblioteca{
     Tematica tematica;
+
 
     public BibliotecaEspecializada() {
     }
 
     @Override
     public void agregarLibroAlCatalogo() throws SinHuecoEnCatalogoException {
-        Libro libro = generarLibro();
-        if ( libro instanceof LibroTerror && tematica.equals(Tematica.terror)){
-            super.agregarLibroAlCatalogo();
+        ArrayList<Libro> listaLibros = getListaLibros();
+        for (Libro item : listaLibros) {
+            if ( item instanceof LibroTerror && tematica.equals(Tematica.terror)){
+                super.agregarLibroAlCatalogo();
+            }
+            if ( item instanceof Ensayo && tematica.equals(Tematica.ensayo)){
+                super.agregarLibroAlCatalogo();
+            }
+            if ( item instanceof LibroComedia && tematica.equals(Tematica.comedia)){
+                super.agregarLibroAlCatalogo();
+            }
+            if ( item instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)){
+                super.agregarLibroAlCatalogo();
+            }
         }
-        if ( libro instanceof Ensayo && tematica.equals(Tematica.ensayo)){
-            super.agregarLibroAlCatalogo();
-        }
-        if ( libro instanceof LibroComedia && tematica.equals(Tematica.comedia)){
-            super.agregarLibroAlCatalogo();
-        }
-        if ( libro instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)){
-            super.agregarLibroAlCatalogo();
-        }
+
+
     }
 
     public BibliotecaEspecializada(String nombre, String director, Tematica tematica) {
