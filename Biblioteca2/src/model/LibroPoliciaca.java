@@ -34,7 +34,11 @@ public class LibroPoliciaca extends Libro {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce la trama (misterio/intriga)");
         String tramaStr = scanner.nextLine();
-        trama = Trama.valueOf(tramaStr.toLowerCase());
+        try {
+            trama = Trama.valueOf(tramaStr.toLowerCase());
+        }catch (IllegalArgumentException e){
+            System.out.println("La trama introducida no es válida");
+        }
         listaPersonajes = pedirPersonajes();
     }
 

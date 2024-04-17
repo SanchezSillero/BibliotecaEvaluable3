@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class Libro implements Serializable {
@@ -39,7 +40,11 @@ public abstract class Libro implements Serializable {
         System.out.println("Autor");
         autor = scanner.nextLine();
         System.out.println("Número de páginas");
+        try {
         numeroPaginas = scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Número de páginas no válido");
+        }
     }
 
     @Override

@@ -53,9 +53,39 @@ public class BibliotecaEspecializada extends Biblioteca{
         if (!coincideTematica && coincideIsbn){
             System.out.println("El libro con ISBN "+isbn+ " no corresponde con la temática de esta biblioteca");
         }
+
         if (!coincideIsbn){
             System.out.println("No tenemos datos de ningún libro con ese ISBN, proceda a registrarlos:");
-            super.agregarLibroAlCatalogo();
+            Libro libro = super.generarLibro();
+            boolean agregado = false;
+            if (libro instanceof LibroTerror && tematica.equals(Tematica.terror)){
+                super.agregarLibroListaCompartida(libro);
+                super.agregarLibroCargado(libro);
+                System.out.println("Libro registrado y agregado al catálogo");
+                agregado = true;
+            }
+            if (libro instanceof Ensayo && tematica.equals(Tematica.ensayo)){
+                super.agregarLibroListaCompartida(libro);
+                super.agregarLibroCargado(libro);
+                System.out.println("Libro registrado y agregado al catálogo");
+                agregado = true;
+            }
+            if (libro instanceof LibroComedia && tematica.equals(Tematica.comedia)){
+                super.agregarLibroListaCompartida(libro);
+                super.agregarLibroCargado(libro);
+                System.out.println("Libro registrado y agregado al catálogo");
+                agregado = true;
+            }
+            if (libro instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)){
+                super.agregarLibroListaCompartida(libro);
+                super.agregarLibroCargado(libro);
+                System.out.println("Libro registrado y agregado al catálogo");
+                agregado = true;
+            }
+            if (!agregado){
+                System.out.println("El libro no ha podido registrarse, certifique que coincide con la temática de la biblioteca");
+            }
+
         }
 
     }
