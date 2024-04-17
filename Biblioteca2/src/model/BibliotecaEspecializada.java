@@ -14,22 +14,49 @@ public class BibliotecaEspecializada extends Biblioteca{
 
     @Override
     public void agregarLibroAlCatalogo() throws SinHuecoEnCatalogoException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce el ISBN del libro");
+        int isbn = scanner.nextInt();
         ArrayList<Libro> listaLibros = getListaLibros();
+        boolean coincideTematica = false;
+        boolean coincideIsbn = false;
+
         for (Libro item : listaLibros) {
-            if ( item instanceof LibroTerror && tematica.equals(Tematica.terror)){
-                super.agregarLibroAlCatalogo();
-            }
-            if ( item instanceof Ensayo && tematica.equals(Tematica.ensayo)){
-                super.agregarLibroAlCatalogo();
-            }
-            if ( item instanceof LibroComedia && tematica.equals(Tematica.comedia)){
-                super.agregarLibroAlCatalogo();
-            }
-            if ( item instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)){
-                super.agregarLibroAlCatalogo();
+            if (item.getIsbn() == isbn) {
+                coincideIsbn = true;
+                if (item instanceof LibroTerror && tematica.equals(Tematica.terror)) {
+                    super.agregarLibroCargado(item);
+                    System.out.println("Libro agregado satisfactoriamente");
+                    coincideTematica=true;
+                    break;
+                }
+                if (item.getIsbn() == isbn && item instanceof Ensayo && tematica.equals(Tematica.ensayo)) {
+                    super.agregarLibroCargado(item);
+                    System.out.println("Libro agregado satisfactoriamente");
+                    coincideTematica=true;
+                    break;
+                }
+                if (item.getIsbn() == isbn && item instanceof LibroComedia && tematica.equals(Tematica.comedia)) {
+                    super.agregarLibroCargado(item);
+                    System.out.println("Libro agregado satisfactoriamente");
+                    coincideTematica=true;
+                    break;
+                }
+                if (item.getIsbn() == isbn && item instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)) {
+                    super.agregarLibroCargado(item);
+                    System.out.println("Libro agregado satisfactoriamente");
+                    coincideTematica=true;
+                    break;
+                }
             }
         }
-
+        if (!coincideTematica && coincideIsbn){
+            System.out.println("El libro con ISBN "+isbn+ " no corresponde con la temática de esta biblioteca");
+        }
+        if (!coincideIsbn){
+            System.out.println("No tenemos datos de ningún libro con ese ISBN, proceda a registrarlos:");
+            super.agregarLibroAlCatalogo();
+        }
 
     }
 
