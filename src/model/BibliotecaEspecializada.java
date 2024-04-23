@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaEspecializada extends Biblioteca{
-    Tematica tematica;
+    Tipo tipo;
 
 
     public BibliotecaEspecializada() {
@@ -24,25 +24,7 @@ public class BibliotecaEspecializada extends Biblioteca{
         for (Libro item : listaLibros) {
             if (item.getIsbn() == isbn) {
                 coincideIsbn = true;
-                if (item instanceof LibroTerror && tematica.equals(Tematica.terror)) {
-                    super.agregarLibroCargado(item);
-                    System.out.println("Libro agregado satisfactoriamente");
-                    coincideTematica=true;
-                    break;
-                }
-                if (item.getIsbn() == isbn && item instanceof Ensayo && tematica.equals(Tematica.ensayo)) {
-                    super.agregarLibroCargado(item);
-                    System.out.println("Libro agregado satisfactoriamente");
-                    coincideTematica=true;
-                    break;
-                }
-                if (item.getIsbn() == isbn && item instanceof LibroComedia && tematica.equals(Tematica.comedia)) {
-                    super.agregarLibroCargado(item);
-                    System.out.println("Libro agregado satisfactoriamente");
-                    coincideTematica=true;
-                    break;
-                }
-                if (item.getIsbn() == isbn && item instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)) {
+                if (item.getTipo().equals(tipo)){
                     super.agregarLibroCargado(item);
                     System.out.println("Libro agregado satisfactoriamente");
                     coincideTematica=true;
@@ -58,30 +40,13 @@ public class BibliotecaEspecializada extends Biblioteca{
             System.out.println("No tenemos datos de ningún libro con ese ISBN, proceda a registrarlos:");
             Libro libro = super.generarLibro();
             boolean agregado = false;
-            if (libro instanceof LibroTerror && tematica.equals(Tematica.terror)){
+            if (libro.getTipo().equals(tipo)){
                 super.agregarLibroListaCompartida(libro);
                 super.agregarLibroCargado(libro);
                 System.out.println("Libro registrado y agregado al catálogo");
                 agregado = true;
             }
-            if (libro instanceof Ensayo && tematica.equals(Tematica.ensayo)){
-                super.agregarLibroListaCompartida(libro);
-                super.agregarLibroCargado(libro);
-                System.out.println("Libro registrado y agregado al catálogo");
-                agregado = true;
-            }
-            if (libro instanceof LibroComedia && tematica.equals(Tematica.comedia)){
-                super.agregarLibroListaCompartida(libro);
-                super.agregarLibroCargado(libro);
-                System.out.println("Libro registrado y agregado al catálogo");
-                agregado = true;
-            }
-            if (libro instanceof LibroPoliciaca && tematica.equals(Tematica.policiaca)){
-                super.agregarLibroListaCompartida(libro);
-                super.agregarLibroCargado(libro);
-                System.out.println("Libro registrado y agregado al catálogo");
-                agregado = true;
-            }
+
             if (!agregado){
                 System.out.println("El libro no ha podido registrarse, certifique que coincide con la temática de la biblioteca");
             }
@@ -90,16 +55,16 @@ public class BibliotecaEspecializada extends Biblioteca{
 
     }
 
-    public BibliotecaEspecializada(String nombre, String director, Tematica tematica) {
+    public BibliotecaEspecializada(String nombre, String director, Tipo tipo) {
         super(nombre, director);
-        this.tematica = tematica;
+        this.tipo = tipo;
     }
 
-    public Tematica getTematica() {
-        return tematica;
+    public Tipo getTematica() {
+        return tipo;
     }
 
-    public void setTematica(Tematica tematica) {
-        this.tematica = tematica;
+    public void setTematica(Tipo tipo) {
+        this.tipo = tipo;
     }
 }

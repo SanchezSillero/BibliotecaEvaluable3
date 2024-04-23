@@ -8,15 +8,15 @@ public class Ensayo extends Libro {
     public Ensayo() {
     }
 
-    public Ensayo(int isbn, String titulo, String autor, int numeroPaginas, String tematica) {
-        super(isbn, titulo, autor, numeroPaginas);
+    public Ensayo(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, String tematica) {
+        super(isbn, titulo, autor, numeroPaginas, tipo);
         this.tematica = tematica;
     }
 
     @Override
     public void mostrarDatos() {
         super.mostrarDatos();
-        System.out.println("tematica = " + tematica);
+        System.out.println("temática = " + tematica);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Ensayo extends Libro {
 
     public  Ensayo generarEnsayo(){
         pedirDatosLibro();
-        Ensayo ensayo = new Ensayo(isbn,titulo,autor,numeroPaginas, tematica);
+        Ensayo ensayo = new Ensayo(isbn,titulo,autor,numeroPaginas,tipo,tematica);
         return ensayo;
     }
 
@@ -43,6 +43,7 @@ public class Ensayo extends Libro {
                 ", tematica='" + tematica + '\'' +
                 '}';
     }
+
 
     public String getTematica() {
         return tematica;

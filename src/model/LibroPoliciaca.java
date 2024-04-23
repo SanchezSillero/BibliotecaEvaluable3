@@ -10,13 +10,11 @@ public class LibroPoliciaca extends Libro {
     public LibroPoliciaca() {
     }
 
-    public LibroPoliciaca(int isbn, String titulo, String autor, int numeroPaginas, Trama trama, ArrayList<String> listaPersonajes) {
-        super(isbn, titulo, autor, numeroPaginas);
+    public LibroPoliciaca(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, Trama trama, ArrayList<String> listaPersonajes) {
+        super(isbn, titulo, autor, numeroPaginas, tipo);
         this.trama = trama;
         this.listaPersonajes = listaPersonajes;
     }
-
-
 
     @Override
     public void mostrarDatos() {
@@ -59,7 +57,7 @@ public class LibroPoliciaca extends Libro {
     public LibroPoliciaca generarPoliciaca(){
         pedirDatosLibro();
         pedirPersonajes();
-        LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, titulo, autor, numeroPaginas, trama, listaPersonajes);
+        LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, titulo, autor, numeroPaginas, tipo, trama, listaPersonajes);
         return libroPoliciaca;
     }
 

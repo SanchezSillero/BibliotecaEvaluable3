@@ -10,23 +10,27 @@ public abstract class Libro implements Serializable {
     protected String titulo;
     protected String autor;
     protected int numeroPaginas;
+    protected Tipo tipo;
 
 
     public Libro() {
     }
 
-    public Libro(int isbn, String titulo, String autor, int numeroPaginas) {
+    public Libro(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.numeroPaginas = numeroPaginas;
+        this.tipo = tipo;
     }
 
     public void mostrarDatos() {
         System.out.println("isbn = " + isbn);
         System.out.println("titulo = " + titulo);
         System.out.println("autor = " + autor);
+        System.out.println("temática = " + tipo);
         System.out.println("numeroPaginas = " + numeroPaginas);
+        System.out.println("tipo = " + tipo);
     }
 
     public void pedirDatosLibro() {
@@ -45,6 +49,9 @@ public abstract class Libro implements Serializable {
         }catch (InputMismatchException e){
             System.out.println("Número de páginas no válido");
         }
+        System.out.println("Tipo (terror/comedia/ensayo/policica):");
+        String tipoStr = scanner.nextLine();
+        tipo = Tipo.valueOf(tipoStr.toLowerCase());
     }
 
     @Override
@@ -54,6 +61,7 @@ public abstract class Libro implements Serializable {
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", numeroPaginas=" + numeroPaginas +
+                ", tipo=" + tipo +
                 '}';
     }
 
@@ -61,6 +69,9 @@ public abstract class Libro implements Serializable {
         return isbn;
     }
 
+    public void setIsbn(int isbn) {
+        this.isbn = isbn;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -84,5 +95,13 @@ public abstract class Libro implements Serializable {
 
     public void setNumeroPaginas(int numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 }

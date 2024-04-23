@@ -1,5 +1,5 @@
 package model;
 
-public enum Tematica {
+public enum Tipo {
     comedia, ensayo, policiaca, terror;
 }

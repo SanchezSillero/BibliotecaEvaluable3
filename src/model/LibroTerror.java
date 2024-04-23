@@ -10,8 +10,12 @@ public class LibroTerror extends Libro {
     public LibroTerror() {
     }
 
-    public LibroTerror(int isbn, String titulo, String autor, int numeroPaginas, int calificacionEdad) {
-        super(isbn, titulo, autor, numeroPaginas);
+    public LibroTerror(int calificacionEdad) {
+        this.calificacionEdad = calificacionEdad;
+    }
+
+    public LibroTerror(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, int calificacionEdad) {
+        super(isbn, titulo, autor, numeroPaginas, tipo);
         this.calificacionEdad = calificacionEdad;
     }
 
@@ -35,7 +39,7 @@ public class LibroTerror extends Libro {
 
     public LibroTerror generarTerror(){
         pedirDatosLibro();
-        LibroTerror libroTerror = new LibroTerror(isbn, titulo, autor, numeroPaginas, calificacionEdad);
+        LibroTerror libroTerror = new LibroTerror(isbn, titulo, autor, numeroPaginas, tipo, calificacionEdad);
         return libroTerror;
     }
 

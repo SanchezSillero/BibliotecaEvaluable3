@@ -8,8 +8,8 @@ public class LibroComedia extends Libro {
     public LibroComedia() {
     }
 
-    public LibroComedia(int isbn, String titulo, String autor, int numeroPaginas, TipoHumor tipoDeHumor) {
-        super(isbn, titulo, autor, numeroPaginas);
+    public LibroComedia(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, TipoHumor tipoDeHumor) {
+        super(isbn, titulo, autor, numeroPaginas, tipo);
         this.tipoDeHumor = tipoDeHumor;
     }
 
@@ -41,7 +41,7 @@ public class LibroComedia extends Libro {
 
     public LibroComedia generarComedia(){
         pedirDatosLibro();
-        LibroComedia libroComedia = new LibroComedia(isbn,titulo,autor,numeroPaginas,tipoDeHumor);
+        LibroComedia libroComedia = new LibroComedia(isbn,titulo,autor,numeroPaginas,tipo,tipoDeHumor);
         return libroComedia;
     }
 
