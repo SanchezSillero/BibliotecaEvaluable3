@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibroTerror extends Libro {
+    private final Tipo tipo = Tipo.terror;
     private int calificacionEdad;
 
 
@@ -15,14 +16,15 @@ public class LibroTerror extends Libro {
     }
 
     public LibroTerror(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, int calificacionEdad) {
-        super(isbn, titulo, autor, numeroPaginas, tipo);
+        super(isbn, titulo, autor, numeroPaginas);
         this.calificacionEdad = calificacionEdad;
     }
 
     @Override
     public void mostrarDatos() {
+        System.out.println("Tipo = " + tipo);
         super.mostrarDatos();
-        System.out.println("calificacionEdad = " + calificacionEdad);
+        System.out.println("Calificación por edad = " + calificacionEdad);
     }
 
     @Override
@@ -60,5 +62,10 @@ public class LibroTerror extends Libro {
 
     public void setCalificacionEdad(int calificacionEdad) {
         this.calificacionEdad = calificacionEdad;
+    }
+
+    @Override
+    public Tipo getTipo() {
+        return tipo;
     }
 }

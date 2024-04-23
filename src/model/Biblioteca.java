@@ -140,21 +140,18 @@ public abstract class Biblioteca implements Serializable {
         boolean existeLibro = false;
         for (Libro item : listaLibros) {
             if (isbn == item.getIsbn()) {
+                catalogo.agregarLibro(item);
+                System.out.println("Libro agregado satisfactoriamente al catálogo");
                 existeLibro = true;
                 break;
             }
         }
         if (!existeLibro){
+            System.out.println("No tenemos datos de ningún libro con ese ISBN, proceda a registrarlos:");
             Libro libro = generarLibro();
             agregarLibroListaCompartida(libro);
             catalogo.agregarLibro(libro);
             System.out.println("Libro agregado satisfactoriamente al catálogo");
-        } else {
-            for (Libro item : listaLibros){
-                catalogo.agregarLibro(item);
-                System.out.println("Libro agregado satisfactoriamente al catálogo");
-                break;
-            }
         }
     }
 

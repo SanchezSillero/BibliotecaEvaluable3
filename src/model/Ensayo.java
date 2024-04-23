@@ -4,19 +4,21 @@ import java.util.Scanner;
 
 public class Ensayo extends Libro {
     private String tematica;
+    private final Tipo tipo = Tipo.ensayo;
 
     public Ensayo() {
     }
 
     public Ensayo(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, String tematica) {
-        super(isbn, titulo, autor, numeroPaginas, tipo);
+        super(isbn, titulo, autor, numeroPaginas);
         this.tematica = tematica;
     }
 
     @Override
     public void mostrarDatos() {
+        System.out.println("Tipo = " + tipo);
         super.mostrarDatos();
-        System.out.println("temática = " + tematica);
+        System.out.println("Temática = " + tematica);
     }
 
     @Override
@@ -51,5 +53,10 @@ public class Ensayo extends Libro {
 
     public void setTematica(String tematica) {
         this.tematica = tematica;
+    }
+
+    @Override
+    public Tipo getTipo() {
+        return tipo;
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LibroPoliciaca extends Libro {
+    private final Tipo tipo = Tipo.policiaca;
     Trama trama;
     ArrayList<String> listaPersonajes;
 
@@ -11,16 +12,17 @@ public class LibroPoliciaca extends Libro {
     }
 
     public LibroPoliciaca(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, Trama trama, ArrayList<String> listaPersonajes) {
-        super(isbn, titulo, autor, numeroPaginas, tipo);
+        super(isbn, titulo, autor, numeroPaginas);
         this.trama = trama;
         this.listaPersonajes = listaPersonajes;
     }
 
     @Override
     public void mostrarDatos() {
+        System.out.println("Tipo = " + tipo);
         super.mostrarDatos();
-        System.out.println("trama = " + trama);
-        System.out.println("Lista persobajes: ");
+        System.out.println("Trama = " + trama);
+        System.out.println("Lista personajes: ");
         for (String personaje : listaPersonajes) {
             System.out.println(personaje);
         }
@@ -57,7 +59,7 @@ public class LibroPoliciaca extends Libro {
     public LibroPoliciaca generarPoliciaca(){
         pedirDatosLibro();
         pedirPersonajes();
-        LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, titulo, autor, numeroPaginas, tipo, trama, listaPersonajes);
+        LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, titulo, autor, numeroPaginas,tipo, trama, listaPersonajes);
         return libroPoliciaca;
     }
 
@@ -88,4 +90,10 @@ public class LibroPoliciaca extends Libro {
     public void setListaPersonajes(ArrayList<String> listaPersonajes) {
         this.listaPersonajes = listaPersonajes;
     }
+
+    @Override
+    public Tipo getTipo() {
+        return tipo;
+    }
+
 }

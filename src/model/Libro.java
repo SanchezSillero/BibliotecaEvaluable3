@@ -16,21 +16,19 @@ public abstract class Libro implements Serializable {
     public Libro() {
     }
 
-    public Libro(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo) {
+    public Libro(int isbn, String titulo, String autor, int numeroPaginas) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.numeroPaginas = numeroPaginas;
-        this.tipo = tipo;
     }
 
     public void mostrarDatos() {
-        System.out.println("isbn = " + isbn);
-        System.out.println("titulo = " + titulo);
-        System.out.println("autor = " + autor);
-        System.out.println("temática = " + tipo);
-        System.out.println("numeroPaginas = " + numeroPaginas);
-        System.out.println("tipo = " + tipo);
+        System.out.println("ISBN = " + isbn);
+      //  System.out.println("Tipo = " + tipo);
+        System.out.println("Título = " + titulo);
+        System.out.println("Autor = " + autor);
+        System.out.println("Número de páginas = " + numeroPaginas);
     }
 
     public void pedirDatosLibro() {
@@ -49,9 +47,10 @@ public abstract class Libro implements Serializable {
         }catch (InputMismatchException e){
             System.out.println("Número de páginas no válido");
         }
-        System.out.println("Tipo (terror/comedia/ensayo/policica):");
-        String tipoStr = scanner.nextLine();
-        tipo = Tipo.valueOf(tipoStr.toLowerCase());
+        scanner.nextLine();
+      //  System.out.println("Tipo (comedia/ensayo/policiaca/terror):");
+      //  String tipoStr = scanner.nextLine();
+      //  tipo = Tipo.valueOf(tipoStr.toLowerCase());
     }
 
     @Override
@@ -61,7 +60,7 @@ public abstract class Libro implements Serializable {
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", numeroPaginas=" + numeroPaginas +
-                ", tipo=" + tipo +
+        //        ", tipo=" + tipo +
                 '}';
     }
 
@@ -99,9 +98,5 @@ public abstract class Libro implements Serializable {
 
     public Tipo getTipo() {
         return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
     }
 }

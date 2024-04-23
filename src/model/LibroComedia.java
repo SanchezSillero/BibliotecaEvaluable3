@@ -4,17 +4,19 @@ import java.util.Scanner;
 
 public class LibroComedia extends Libro {
     private TipoHumor tipoDeHumor;
+    private final Tipo tipo = Tipo.comedia;
 
     public LibroComedia() {
     }
 
     public LibroComedia(int isbn, String titulo, String autor, int numeroPaginas, Tipo tipo, TipoHumor tipoDeHumor) {
-        super(isbn, titulo, autor, numeroPaginas, tipo);
+        super(isbn, titulo, autor, numeroPaginas);
         this.tipoDeHumor = tipoDeHumor;
     }
 
     @Override
     public void mostrarDatos() {
+        System.out.println("Tipo = " + tipo);
         super.mostrarDatos();
         System.out.println("Tipo de humor = " + tipoDeHumor);
     }
@@ -41,7 +43,7 @@ public class LibroComedia extends Libro {
 
     public LibroComedia generarComedia(){
         pedirDatosLibro();
-        LibroComedia libroComedia = new LibroComedia(isbn,titulo,autor,numeroPaginas,tipo,tipoDeHumor);
+        LibroComedia libroComedia = new LibroComedia(isbn, titulo, autor, numeroPaginas, tipo, tipoDeHumor);
         return libroComedia;
     }
 
@@ -53,5 +55,10 @@ public class LibroComedia extends Libro {
 
     public void setTipoDeHumor(TipoHumor tipoDeHumor) {
         this.tipoDeHumor = tipoDeHumor;
+    }
+
+    @Override
+    public Tipo getTipo() {
+        return tipo;
     }
 }

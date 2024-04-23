@@ -15,7 +15,7 @@ public class Entrada {
         Biblioteca bibliotecaEspTerror = new BibliotecaEspecializada("Biblioteca Halloween", "María José Ruiz", Tipo.terror);//solo aceptara libros de TERROR
         bibliotecaEspTerror.setNombreArchivoCatalogo("bibliotecaEspTerror.obj");
 
- /*      //creamos algunos libros (no están en ningun catalogo)
+   /*    //creamos algunos libros (no están en ningun catalogo)
         LibroTerror libroTerror1 = new LibroTerror(1, "Frankenstein", "Mary Shelley", 168, Tipo.terror, 14);
         LibroComedia libroComedia1 = new LibroComedia(2, "La vida secreta de Walter Mitty", "James Thurber", 160, Tipo.comedia, TipoHumor.parodia);
         Ensayo ensayo1 = new Ensayo(3, "Los orígenes de la creatividad humana", "Edward O.Wilson", 256, Tipo.ensayo, "Evolución Humana");
@@ -33,7 +33,7 @@ public class Entrada {
         bibliotecaGenerica.agregarLibroListaCompartida(libroPoliciaca1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo2);
-        // bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas */
+        // bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas  */
 /*
 
         //2. CREAMOS CATALOGO DE 4 LIBROS
