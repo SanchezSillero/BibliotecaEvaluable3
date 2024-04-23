@@ -33,8 +33,8 @@ public class Entrada {
         bibliotecaGenerica.agregarLibroListaCompartida(libroPoliciaca1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo1);
         bibliotecaGenerica.agregarLibroListaCompartida(ensayo2);
-        // bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas  */
-/*
+        // bibliotecaGenerica.mostrarListaLibros();//mostramos la lista de libros compartida por las bibliotecas
+
 
         //2. CREAMOS CATALOGO DE 4 LIBROS
         bibliotecaGenerica.construirCatalogoCarga(4);

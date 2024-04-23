@@ -25,7 +25,6 @@ public abstract class Libro implements Serializable {
 
     public void mostrarDatos() {
         System.out.println("ISBN = " + isbn);
-      //  System.out.println("Tipo = " + tipo);
         System.out.println("Título = " + titulo);
         System.out.println("Autor = " + autor);
         System.out.println("Número de páginas = " + numeroPaginas);
@@ -48,9 +47,6 @@ public abstract class Libro implements Serializable {
             System.out.println("Número de páginas no válido");
         }
         scanner.nextLine();
-      //  System.out.println("Tipo (comedia/ensayo/policiaca/terror):");
-      //  String tipoStr = scanner.nextLine();
-      //  tipo = Tipo.valueOf(tipoStr.toLowerCase());
     }
 
     @Override
@@ -60,7 +56,6 @@ public abstract class Libro implements Serializable {
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", numeroPaginas=" + numeroPaginas +
-        //        ", tipo=" + tipo +
                 '}';
     }
 
